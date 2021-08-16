@@ -141,6 +141,39 @@ week late with a penalty of 10%.
 * [Uniprocessor Garbage Collection Techniques](https://iu.instructure.com/courses/1735985/files/82131907/download?wrap=1) by Wilson. 
 * [Fast and Effective Procedure Inlining](https://www.cs.indiana.edu/~dyb/pubs/inlining.pdf) by Waddell and Dybvig.
 
+
+**COVID Precautions**
+
+All students signed the Community Responsibility Acknowledgement
+(CRA).  Your agreement to the public health measures in the CRA is a
+condition of physical presence on the campus this fall.  Included in
+that commitment were the requirements to be vaxinated, for wearing
+masks in all IU buildings, and maintaining social distancing in all IU
+buildings. These are classroom requirements.
+
+These requirements are necessary for us to protect each other.
+
+Therefore, if a student is present in a class without a mask, the
+student will be asked to put on a mask and I will report the student
+to the Division of Student Affairs: Office of Student Conduct.
+
+* If a student refuses to put a mask on after being instructed to do
+  so, the instructor may end the class immediately, and contact the
+  Office of Student Conduct.  Violation of the mask rule is a threat
+  to public safety within the meaning of the Summary Suspension Policy.
+* If a student comes to class without a mask twice, the student’s
+  final grade will be reduced by one letter (e.g., from an A to a B,
+  for instance).
+* If the student comes to class without a mask three times, the
+  student will be withdrawn from the class without refund of tuition
+  and reported to the Office of Student Conduct.
+* If Student Conduct receives three cumulative reports from any
+  combination of instructors or staff members that a student is not
+  complying with the requirements of masking and physical distancing,
+  the student will be summarily suspended from the university for the
+  semester.
+	
+	
 **Bias-Based Incident Reporting.**
 
 Bias-based incident reports can be made by students, faculty and
