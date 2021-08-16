@@ -7,7 +7,7 @@ High-level programming languages like Racket and Python make it easier
 to program compared to low-level languages such as x86 assembly
 code. But how do high-level languages work? There's a big gap between
 high-level languages and machine instructions for modern computers. In
-this class you learn how to translate Racket or Pythong programs (your
+this class you learn how to translate Racket or Python programs (your
 choice!) all the way to x86 assembly language.
 
 Traditionally, compiler courses teach one phase of the compiler at a
@@ -20,8 +20,9 @@ integer arithmetic, and by the time we are done the language includes
 first-class functions.
 
 **Prerequisites:** Fluency in Racket or Python is highly recommended
-as students will do a lot of programming in Racket or Python. Prior
-knowledge of an assembly language helps, but is not required.
+as students will do a lot of programming in one of those
+languages. Prior knowledge of an assembly language helps, but is not
+required.
 
 **Textbook:** 
 
@@ -39,9 +40,6 @@ github:
 
 **Lecture:** Tuesdays and Thursdays 3:15-4:30pm, Informatics Building
   (Myles Brand Hall), Room E130.
-
-**Lecture Notes and Recordings:**
-
 
 **Office hours**
 
