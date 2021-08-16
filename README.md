@@ -147,7 +147,7 @@ week late with a penalty of 10%.
 All students signed the Community Responsibility Acknowledgement
 (CRA).  Your agreement to the public health measures in the CRA is a
 condition of physical presence on the campus this fall.  Included in
-that commitment were the requirements to be vaxinated, for wearing
+that commitment were the requirements to be vaccinated, for wearing
 masks in all IU buildings, and maintaining social distancing in all IU
 buildings. These are classroom requirements.
 
