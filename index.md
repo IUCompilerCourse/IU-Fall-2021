@@ -132,8 +132,10 @@ week late with a penalty of 10%.
 **Resources:**
 
 * Github repository for the support code and test suites for [Racket](https://github.com/IUCompilerCourse/public-student-support-code) and [Python](https://github.com/IUCompilerCourse/python-student-support-code)
-* [Racket](https://download.racket-lang.org/)
+* [Racket Download](https://download.racket-lang.org/)
 * [Racket Documentation](https://docs.racket-lang.org/)
+* [Python 3.10 Download](https://www.python.org/downloads/release/python-3100rc1/)
+* [Python 3.10 Documentation](https://docs.python.org/3.10/)
 * [Notes on x86-64 programming](http://web.cecs.pdx.edu/~apt/cs491/x86-64.pdf)
 * [x86-64 Machine-Level Programming](https://www.cs.cmu.edu/~fp/courses/15411-f13/misc/asm64-handout.pdf)
 * [Intel x86 Manual](http://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-manual-325462.pdf?_ga=1.200286509.2020252148.1452195021)
