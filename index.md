@@ -77,10 +77,10 @@ the Canvas panel on the right-hand side of this web page.  Grading
 will take into account any technology problems that arrise, i.e., you
 won't fail the class because your internet went out.
 
-* Assignments
-* Quizzes
-* Midterm Exam (October 21, in class)
-* Final Exam (Week of December 12)
+* Assignments (30%)
+* Quizzes (10%)
+* Midterm Exam (October 21, in class) (25%)
+* Final Exam (Week of December 12) (35%)
 
 **Assignments:**
 
@@ -125,8 +125,8 @@ Dec. 15.
 week late with a penalty of 10%.
 
 **Slack Chat/Messaging:**
-  [Workspace](http://iu-compiler-course.slack.com/) (
-  [signup](https://join.slack.com/t/iu-compiler-course/signup?x=x-p1325281886868-1312364974614-1331891515409)
+  [Workspace](https://iucompilercou-vm16750.slack.com) (
+  [signup](https://join.slack.com/t/slack-55j8169/shared_invite/zt-ulktwirl-CoKBrKGdKanD_R50e9Q46g)
   using your iu email address).
 
 **Resources:**
@@ -142,7 +142,7 @@ week late with a penalty of 10%.
 * [Fast and Effective Procedure Inlining](https://www.cs.indiana.edu/~dyb/pubs/inlining.pdf) by Waddell and Dybvig.
 
 
-**COVID Precautions**
+**COVID Policies and Precautions**
 
 All students signed the Community Responsibility Acknowledgement
 (CRA).  Your agreement to the public health measures in the CRA is a
