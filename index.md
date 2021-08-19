@@ -131,7 +131,9 @@ week late with a penalty of 10%.
 
 **Resources:**
 
-* Github repository for the support code and test suites for [Racket](https://github.com/IUCompilerCourse/public-student-support-code) and [Python](https://github.com/IUCompilerCourse/python-student-support-code)
+* Github repository for the support code and test suites
+    - for [Racket](https://github.com/IUCompilerCourse/public-student-support-code) 
+	- for [Python](https://github.com/IUCompilerCourse/python-student-support-code)
 * [Racket Download](https://download.racket-lang.org/)
 * [Racket Documentation](https://docs.racket-lang.org/)
 * [Python 3.10 Download](https://www.python.org/downloads/release/python-3100rc1/)
