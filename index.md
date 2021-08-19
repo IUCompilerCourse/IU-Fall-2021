@@ -111,7 +111,7 @@ all of the code that their team produces. The midterm and final exam
 are designed to test a student's understanding of the assignments.
 
 Students are free to discuss and get help on the assignments from
-anyone or anywhere. When posting questions on Piazza, it is OK to post
+anyone or anywhere. When posting questions on Slack, it is OK to post
 your code.
 
 In contrast, for quizzes and exams, students are asked to work
