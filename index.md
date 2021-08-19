@@ -88,23 +88,23 @@ Organize into teams of 2-4 students. Assignments will be due bi-weekly
 on Mondays at 11:59pm. Teams that include one or more graduate
 students are required to complete the challenge exercises.
 
-Assignment descriptions are posted on Canvas.
-Turn in your assignments by creating a github repository and giving
-access to Jeremy (jsiek).
+Assignment descriptions are posted on Canvas.  Turn in your
+assignments by submitting your code to the
+[autograder](https://autograder.sice.indiana.edu/web/course/28).
+There is a Racket and Python version of each assignment.  Submit your
+`compiler` file, either `compiler.rkt` or `compiler.py` depending on
+the language you are using.
 
-Assignments will be graded based on how many test cases they succeed on.
-Partial credit will be given for each "pass" of the compiler.
+Assignments will be graded based on how many test cases they succeed
+on.  Partial credit will be given for each "pass" of the compiler.
 Some of the tests are in the public support code (see Resources below)
 and the rest of the tests will be made available on Sunday night, one
-day prior to the due date. The testing will be done on the linux
-machine kj.luddy.indiana.edu named
-after [Katherine
-Johnson](https://en.wikipedia.org/wiki/Katherine_Johnson) of NASA
-fame. The testing will include both new tests and all of the tests
-from prior assignments.
+day prior to the due date. The testing will be done on a linux
+(ubuntu) machine. The testing will include both new tests and all of
+the tests from prior assignments.
 
 You may request feedback on your assignments prior to the due date.
-Just commit your work to github and send us email.
+Just submit your work to the autograder and send us email.
 
 Students are responsible for understanding the entire assignment and
 all of the code that their team produces. The midterm and final exam
