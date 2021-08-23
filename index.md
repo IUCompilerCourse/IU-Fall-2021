@@ -129,6 +129,15 @@ week late with a penalty of 10%.
   [signup](https://join.slack.com/t/slack-55j8169/shared_invite/zt-ulktwirl-CoKBrKGdKanD_R50e9Q46g)
   using your iu email address).
 
+**Schedule**
+
+Day     | Lecture Topic         | Reading Due    | Assignment Due
+Aug. 24 | [Introduction](./lecture-Aug-24.md) |  |
+Aug. 26 | From L1 to x86        | Ch. 1          |
+Aug. 31 | Uniquify, Remove Complex, Explicate | Ch. 2 |
+Sep. 2  | Select Instr., Assign Homes, Patch, Prelude & Concl.     |    | 
+Sep. 6  |                       |                | Integers and Variables, submit in [Racket](https://autograder.sice.indiana.edu/web/project/319) or [Python](https://autograder.sice.indiana.edu/web/project/320)
+
 **Resources:**
 
 * Github repository for the support code and test suites
