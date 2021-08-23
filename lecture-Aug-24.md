@@ -44,7 +44,7 @@ Welcome to Compilers! (P423, P523, E313, E513)
 
 * Python classes for AST
 
-    https://docs.python.org/3.10/library/ast.html
+    [https://docs.python.org/3.10/library/ast.html](Python ast module)
 
 * Grammars
 	* Concrete syntax
@@ -60,5 +60,7 @@ Welcome to Compilers! (P423, P523, E313, E513)
 			R0 ::= (Program '() exp)
 
 
-## Pattern Matching and Structural Recursion `R0-height.rkt`
+## Pattern Matching and Structural Recursion
 
+[`L0-height.rkt`](./L0-height.rkt)
+[`L0-height.py`](./L0-height.py)
