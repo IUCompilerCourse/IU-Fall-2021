@@ -23,7 +23,7 @@ Welcome to Compilers! (P423, P523, E313, E513)
 
 * autograder: https://autograder.sice.indiana.edu/web/course/28
 
-## Concrete Syntax, Abstract Syntax Trees (AST), Racket Structures, Python Class
+## Concrete Syntax, Abstract Syntax Trees (AST)
 
 * Programs in concrete syntax (Racket/Python)
 
@@ -62,5 +62,8 @@ Welcome to Compilers! (P423, P523, E313, E513)
 
 ## Pattern Matching and Structural Recursion
 
-[`L0-height.rkt`](./L0-height.rkt)
-[`L0-height.py`](./L0-height.py)
+Examples:
+
+* [`L0-height.rkt`](./L0-height.rkt)
+
+* [`L0-height.py`](./L0-height.py)
