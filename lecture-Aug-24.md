@@ -50,14 +50,14 @@ Welcome to Compilers! (P423, P523, E313, E513)
 	* Concrete syntax
 
 			exp ::= int | (read) | (- exp) | (+ exp exp) | (- exp exp)
-			R0 ::= exp
+			L0 ::= exp
 
 	* Abstract syntax
 
 			exp ::= (Int int) | (Prim 'read '()) 
 				| (Prim '- (list exp))
 				| (Prim '+ (list exp exp))
-			R0 ::= (Program '() exp)
+			L0 ::= (Program '() exp)
 
 
 ## Pattern Matching and Structural Recursion
