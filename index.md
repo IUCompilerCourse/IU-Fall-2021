@@ -129,12 +129,19 @@ week late with a penalty of 10%.
 
 **Schedule**
 
-Day     | Lecture Topic         | Reading Due    | Assignment Due
-Aug. 24 | [Introduction](./lectures/Aug-24.md) |  |
-Aug. 26 | From L1 to x86        | Ch. 1          |
-Aug. 31 | Uniquify, Remove Complex, Explicate | Ch. 2 |
-Sep. 2  | Select Instr., Assign Homes, Patch, Prelude & Concl.     |    | 
-Sep. 6  |                       |                | Integers and Variables, submit in [Racket](https://autograder.sice.indiana.edu/web/project/319) or [Python](https://autograder.sice.indiana.edu/web/project/320)
+Day     | Lecture Topic                        | Reading Due                   | Assignment Due
+Aug. 24 | [Introduction](./lectures/Aug-24.md) |                               |
+Aug. 26 | Compiling from L1 to x86             | Ch. 1                         |
+Aug. 31 | Uniquify, Remove Complex Operands, Explicate Control | Ch. 2         |
+Sep. 2  | Select Instructions, Assign Homes, Patch, Prelude & Conclusion  |    | 
+Sep. 6  |                                      |                               | Integers and Variables, submit in [Racket](https://autograder.sice.indiana.edu/web/project/319) or [Python](https://autograder.sice.indiana.edu/web/project/320)
+Sep. 7 | Code Review: Integers and Variables   |                               | 
+Sep. 9 | Register Allocation: liveness analysis, interference graph | Ch. 3    |
+Sep. 14 | Register Allocation: graph coloring  |                               |
+Sep. 16 | Compiling from L2 to x86             |                               |
+Sep. 20 |                                      |                               |  Register Allocation
+Sep. 21 | Code Review: Register Allocation     |                               |
+
 
 **Resources:**
 
