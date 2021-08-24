@@ -138,7 +138,7 @@ Sep. 6  |                                      |                               |
 Sep. 7 | Code Review: Integers and Variables   |                               | 
 Sep. 9 | Register Allocation: liveness analysis, interference graph | Ch. 3    |
 Sep. 14 | Register Allocation: graph coloring  |                               |
-Sep. 16 | Compiling from L2 to x86             |                               |
+Sep. 16 | Compiling from L_If to x86           |                               |
 Sep. 20 |                                      |                               |  Register Allocation
 Sep. 21 | Code Review: Register Allocation     |                               |
 
