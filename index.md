@@ -96,12 +96,11 @@ There is a Racket and Python version of each assignment.  Submit your
 the language you are using.
 
 Assignments will be graded based on how many test cases they succeed
-on.  Partial credit will be given for each "pass" of the compiler.
-Some of the tests are in the public support code (see Resources below)
-and the rest of the tests will be made available on Sunday night, one
-day prior to the due date. The testing will be done on a linux
-(ubuntu) machine. The testing will include both new tests and all of
-the tests from prior assignments.
+on. Partial credit will be given for each "pass" of the compiler.
+Some of the tests are in the public support code (see Resources
+below). The testing will be done on a linux (ubuntu) machine. The
+testing will include both new tests and all of the tests from prior
+assignments.
 
 You may request feedback on your assignments prior to the due date.
 Just submit your work to the autograder and send us email.
@@ -115,8 +114,7 @@ anyone or anywhere. When posting questions on Slack, it is OK to post
 your code.
 
 In contrast, for quizzes and exams, students are asked to work
-alone. The quizzes and exams are closed book.  We will be using
-Respondus Monitor for online proctoring.  
+alone. The quizzes and exams are closed book.
 
 The Final Project is due Dec. 10 and may be turned in late up to
 Dec. 15.
