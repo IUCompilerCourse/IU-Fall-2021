@@ -132,7 +132,7 @@ week late with a penalty of 10%.
 **Schedule**
 
 Day     | Lecture Topic         | Reading Due    | Assignment Due
-Aug. 24 | [Introduction](./lecture-Aug-24.md) |  |
+Aug. 24 | [Introduction](./lectures/lecture-Aug-24.md) |  |
 Aug. 26 | From L1 to x86        | Ch. 1          |
 Aug. 31 | Uniquify, Remove Complex, Explicate | Ch. 2 |
 Sep. 2  | Select Instr., Assign Homes, Patch, Prelude & Concl.     |    | 
