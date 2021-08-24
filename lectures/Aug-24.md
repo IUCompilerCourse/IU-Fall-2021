@@ -44,26 +44,55 @@ Welcome to Compilers! (P423, P523, E313, E513)
 
 * Python classes for AST
 
-    [https://docs.python.org/3.10/library/ast.html](Python ast module)
+    [Python ast module](https://docs.python.org/3.10/library/ast.html)
+	[ast module type declarations](https://github.com/python/typeshed/blob/master/stdlib/_ast.pyi)
+
+		class Constant(expr):
+			value: Any
+
+		class BinOp(expr):
+			left: expr
+			op: operator
+			right: expr
+
+		class UnaryOp(expr):
+			op: unaryop
+			operand: expr
 
 * Grammars
 	* Concrete syntax
+	  
+	  Racket style:
 
-			exp ::= int | (read) | (- exp) | (+ exp exp) | (- exp exp)
-			L0 ::= exp
+			exp ::= int | (read) | (- exp) | (+ exp exp)
+			L_Int ::= exp
+
+      Python style:
+
+			exp ::= int | input_int() | - exp | exp + exp
+			L_Int ::= exp
 
 	* Abstract syntax
+	
+      Racket:
 
 			exp ::= (Int int) | (Prim 'read '()) 
 				| (Prim '- (list exp))
 				| (Prim '+ (list exp exp))
-			L0 ::= (Program '() exp)
+			L_Int ::= (Program '() exp)
 
+      Python:
+
+            exp ::= Constant(int) | Call(Name('input_int'), [])
+			    | UnaryOp(USub(), exp)
+				| BinOp(exp, Add(), exp)
+			stmt ::= Expr(Call(Name('print'), [exp])) | Expr(exp)
+            L_Int ::= Module()
 
 ## Pattern Matching and Structural Recursion
 
 Examples:
 
-* [`L0-height.rkt`](./L0-height.rkt)
+* [`L_Int_height.rkt`](./L_Int_height.rkt)
 
-* [`L0-height.py`](./L0-height.py)
+* [`L_Int_height.py`](./L_Int_height.py)

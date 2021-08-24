@@ -131,9 +131,9 @@ week late with a penalty of 10%.
 
 Day     | Lecture Topic                        | Reading Due                   | Assignment Due
 Aug. 24 | [Introduction](./lectures/Aug-24.md) |                               |
-Aug. 26 | Compiling from L1 to x86             | Ch. 1                         |
+Aug. 26 | Compiling from L_Var to x86          | Ch. 1                         |
 Aug. 31 | Uniquify, Remove Complex Operands, Explicate Control | Ch. 2         |
-Sep. 2  | Select Instructions, Assign Homes, Patch, Prelude & Conclusion  |    | 
+Sep. 2  | Select Instructions, Assign Homes, Patch Instructions, Prelude & Conclusion | | 
 Sep. 6  |                                      |                               | Integers and Variables, submit in [Racket](https://autograder.sice.indiana.edu/web/project/319) or [Python](https://autograder.sice.indiana.edu/web/project/320)
 Sep. 7 | Code Review: Integers and Variables   |                               | 
 Sep. 9 | Register Allocation: liveness analysis, interference graph | Ch. 3    |
@@ -152,6 +152,7 @@ Sep. 21 | Code Review: Register Allocation     |                               |
 * [Racket Documentation](https://docs.racket-lang.org/)
 * [Python 3.10 Download](https://www.python.org/downloads/release/python-3100rc1/)
 * [Python 3.10 Documentation](https://docs.python.org/3.10/)
+* [Python ast module declarations](https://github.com/python/typeshed/blob/master/stdlib/_ast.pyi)
 * [Notes on x86-64 programming](http://web.cecs.pdx.edu/~apt/cs491/x86-64.pdf)
 * [x86-64 Machine-Level Programming](https://www.cs.cmu.edu/~fp/courses/15411-f13/misc/asm64-handout.pdf)
 * [Intel x86 Manual](http://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-manual-325462.pdf?_ga=1.200286509.2020252148.1452195021)
