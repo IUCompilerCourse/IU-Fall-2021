@@ -45,6 +45,7 @@ Welcome to Compilers! (P423, P523, E313, E513)
 * Python classes for AST
 
     [Python ast module](https://docs.python.org/3.10/library/ast.html)
+	
 	[ast module type declarations](https://github.com/python/typeshed/blob/master/stdlib/_ast.pyi)
 
 		class Constant(expr):
@@ -70,7 +71,8 @@ Welcome to Compilers! (P423, P523, E313, E513)
       Python style:
 
 			exp ::= int | input_int() | - exp | exp + exp
-			L_Int ::= exp
+			stmt ::= print(exp) | exp
+			L_Int ::= stmt*
 
 	* Abstract syntax
 	
@@ -87,7 +89,7 @@ Welcome to Compilers! (P423, P523, E313, E513)
 			    | UnaryOp(USub(), exp)
 				| BinOp(exp, Add(), exp)
 			stmt ::= Expr(Call(Name('print'), [exp])) | Expr(exp)
-            L_Int ::= Module()
+            L_Int ::= Module(stmt*)
 
 ## Pattern Matching and Structural Recursion
 
