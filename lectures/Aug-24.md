@@ -35,7 +35,7 @@ Welcome to Compilers! (P423, P523, E313, E513)
 
 		(+ (- 10) 5)                 -10 + 5
 
-		(+ (read) (- (read)))        input_int + -input_int()
+		(+ (read) (- (read)))        input_int() + -input_int()
 
 * Racket structures for AST
 
