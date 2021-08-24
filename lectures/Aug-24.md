@@ -1,4 +1,4 @@
-# August 25
+# August 24
 
 Welcome to Compilers! (P423, P523, E313, E513)
 
@@ -16,12 +16,11 @@ Welcome to Compilers! (P423, P523, E313, E513)
   Link to real course web page
   Grades
 
-* Web page:
-  https://iucompilercourse.github.io/IU-Fall-2021/
+* Web page: https://iucompilercourse.github.io/IU-Fall-2021/
 
 * Communication: Slack http://iu-compiler-course.slack.com/
 
-* autograder: https://autograder.sice.indiana.edu/web/course/28
+* Autograder: https://autograder.sice.indiana.edu/web/course/28
 
 ## Concrete Syntax, Abstract Syntax Trees (AST)
 
