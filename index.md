@@ -145,6 +145,7 @@ Sep. 21 | Code Review: Register Allocation     |                               |
 
 **Resources:**
 
+* Lecture videos recorded from last year's [class](https://iucompilercourse.github.io/IU-P423-P523-E313-E513-Fall-2020/).
 * Github repository for the support code and test suites
     - for [Racket](https://github.com/IUCompilerCourse/public-student-support-code) 
 	- for [Python](https://github.com/IUCompilerCourse/python-student-support-code)
