@@ -97,10 +97,3 @@ Welcome to Compilers! (P423, P523, E313, E513)
 			stmt ::= Expr(Call(Name('print'), [exp])) | Expr(exp)
             L_Int ::= Module(stmt*)
 
-## Pattern Matching and Structural Recursion
-
-Examples:
-
-* [`L_Int_height.rkt`](./L_Int_height.rkt)
-
-* [`L_Int_height.py`](./L_Int_height.py)
