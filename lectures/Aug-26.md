@@ -1,5 +1,7 @@
 # August 26
 
+## Teams
+
 ## Pattern Matching and Structural Recursion
 
 Examples:
@@ -8,7 +10,7 @@ Examples:
 
 * [`L_Int_height.py`](./L_Int_height.py)
 
-## Definitional Interpreters 
+## Definitional Interpreters for L_Int
 
 [`interp-Rint.rkt`](./interp-Rint.rkt)
 
@@ -16,8 +18,6 @@ Examples:
 
 [`interp_Pint.py`](./interp_Pint.py)
 
-
-Draw correctness diagram.
 
 ## The L_Var Language: L_Int + variables and let
 
@@ -119,23 +119,24 @@ solution: do instruction selection optimistically, assuming all
 	  registers then do register allocation then patch up the
 	  instructions
 
+Pass for Racket and Python L_Var compilers:
 
-	L_Var
-	|    uniquify
-	V
-	L_Var
-	|    remove complex operands
-	V
-    L_Var
-    |    explicate control
-    V
-	C_Var
-	|    select instructions
-	V
-	x86_Var
-	|    assign homes
-	V
-	x86*
+	L_Var                                   L_Var
+	|    uniquify                           |    remove complex operands
+	V                                       V
+	L_Var                                   L_Var
+	|    remove complex operands            |    select instructions
+	V                                       V
+    L_Var                                   x86_Var
+    |    explicate control                  |    assign homes
+	V                                       V
+	C_Var                                   x86*
+	|    select instructions                |    patch instructions
+	V                                       V
+	x86_Var                                 x86*
+	|    assign homes                       |    prelude & conclusion
+	V                                       V
+	x86*                                    x86
 	|    patch instructions
 	V
 	x86*
