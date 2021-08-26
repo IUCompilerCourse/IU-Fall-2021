@@ -64,7 +64,14 @@ Welcome to Compilers! (P423, P523, E313, E513)
 	  
 	  Racket style:
 
-			exp ::= int | (read) | (- exp) | (+ exp exp)
+            exp ::= int
+            exp ::= (read)
+            exp ::= (- exp)
+
+             (- 42)
+
+			exp ::= int | "(read)" | "(-" exp ")" | "(+" exp exp ")"
+			exp ::= int | (read) | (- <exp> ) | (+ <exp> <exp>)
 			L_Int ::= exp
 
       Python style:
