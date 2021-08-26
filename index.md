@@ -131,7 +131,7 @@ week late with a penalty of 10%.
 
 Day     | Lecture Topic                        | Reading Due                   | Assignment Due
 Aug. 24 | [Introduction](./lectures/Aug-24.md) |                               |
-Aug. 26 | [Compiling from L_Var to x86](./lectures-Aug-26.md) | Ch. 1          |
+Aug. 26 | [Compiling from L_Var to x86](./lectures/Aug-26.md) | Ch. 1          |
 Aug. 31 | Uniquify, Remove Complex Operands, Explicate Control | Ch. 2         |
 Sep. 2  | Select Instructions, Assign Homes, Patch Instructions, Prelude & Conclusion | | 
 Sep. 6  |                                      |                               | Integers and Variables, submit in [Racket](https://autograder.sice.indiana.edu/web/project/319) or [Python](https://autograder.sice.indiana.edu/web/project/320)
