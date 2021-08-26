@@ -119,7 +119,7 @@ solution: do instruction selection optimistically, assuming all
 	  registers then do register allocation then patch up the
 	  instructions
 
-Pass for Racket and Python L_Var compilers:
+Passes for Racket and Python L_Var compilers:
 
 	L_Var                                   L_Var
 	|    uniquify                           |    remove complex operands
