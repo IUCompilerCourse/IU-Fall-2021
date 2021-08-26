@@ -1,10 +1,21 @@
 # August 26
 
+## Pattern Matching and Structural Recursion
+
+Examples:
+
+* [`L_Int_height.rkt`](./L_Int_height.rkt)
+
+* [`L_Int_height.py`](./L_Int_height.py)
+
 ## Definitional Interpreters 
 
 [`interp-Rint.rkt`](./interp-Rint.rkt)
 
 [`Rint-interp-example.rkt`](./Rint-interp-example.rkt)
+
+[`interp_Pint.py`](./interp_Pint.py)
+
 
 Draw correctness diagram.
 

@@ -1,6 +1,6 @@
 #lang racket
 (require "utilities.rkt")
-(require "interp-R0.rkt")
+(require "interp-Rint.rkt")
 
 ;; 42
 (define E1 (Int 42))                    
@@ -17,8 +17,8 @@
 ;; (+ (read) (- (read)))
 (define E5 (Prim '+ (list E2 (Prim '- (list E2))))) 
 
-(interp-R0 (Program '() E1))
-(interp-R0 (Program '() E2))
-(interp-R0 (Program '() E3))
-(interp-R0 (Program '() E4))
-(interp-R0 (Program '() E5))
+(interp-Rint (Program '() E1))
+(interp-Rint (Program '() E2))
+(interp-Rint (Program '() E3))
+(interp-Rint (Program '() E4))
+(interp-Rint (Program '() E5))
