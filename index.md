@@ -43,7 +43,7 @@ github:
 
 **Office hours**
 
-* Jeremy Siek (jsiek): TBD
+* Jeremy Siek (jsiek): Mon 11am-noon, Tue 2-3pm, in Luddy 3014.
 
 **Topics:**
 
