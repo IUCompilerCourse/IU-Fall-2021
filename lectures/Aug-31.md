@@ -45,8 +45,8 @@ Example compilation of a Racket/Python program:
 4. unbounded number of variables vs. registers + memory
 5. variables can overshadow vs. uniquely named registers + memory
 
-* `select_instructions`: convert each L_Var operation into a sequence
-  of instructions
+* `select_instructions`: convert each L_Var operation into 
+  one or more instructions
 * `remove_complex_opera*`: ensure that each sub-expression is
   atomic by introducing temporary variables
 * `explicate_control`: convert from the AST to basic blocks with jumps
@@ -56,13 +56,25 @@ Example compilation of a Racket/Python program:
 
 In what order should we do these passes?
 	
-Gordian Knot: 
+Gordian Knot:
 * instruction selection
 * register/stack allocation
 
-solution: do instruction selection optimistically, assuming all
-	  registers then do register allocation then patch up the
-	  instructions
+Doing instruction selection first enables improved register
+allocation. For example, instruction selection reveals which function
+parameters live in which registers.
+
+On the other hand, we should do instruction selection after register
+allocation because register allocation may fail to put some variables
+in registers, and x86 instructions may each only access one memory
+location (non-register), so the compiler must choose different
+instruction sequences depending on the register allocation.
+
+solution: 
+1. do instruction selection optimistically, assuming all
+	variables are assigned to registers
+2. then do register allocation
+3. then patch up the instructions using a reserved register (rax)
 
 ## Overview of the Passes for Racket and Python L_Var compilers
 
