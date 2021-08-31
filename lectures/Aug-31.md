@@ -169,10 +169,12 @@ and not
 
 Python example:
 
-    x = 42 + -10
-	prinnt(x + 10)
+    y = 10
+    x = 42 + -y
+	print(x + 10)
 	=>
-	tmp_0 = -10
+	y = 10
+	tmp_0 = -y
 	x = 42 + tmp_0
 	tmp_1 = x + 10
 	print(tmp_1)
@@ -189,7 +191,7 @@ Grammar of the Python output
 
     atm ::= Constant(int) | Name(var)
     exp ::= atm | Call(Name('input_int'), []) 
-        | UnaryOp(USub(), atm) | BinOp(Add(), atm, atm)
+        | UnaryOp(USub(), atm) | BinOp(atm, Add(), atm)
     stmt ::= Expr(Call(Name('print'),[atm])) | Expr(exp) | Assign([Name(var)], exp)
     L^ANF_Var ::= Module(stmt*)
 

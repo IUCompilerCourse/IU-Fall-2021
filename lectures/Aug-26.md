@@ -31,7 +31,7 @@ Python version:
 
 	exp ::= int | input_int() | - exp | exp + exp | var
 	stmt ::= print(exp) | exp | var = exp
-	L_Int ::= stmt*
+	L_Var ::= stmt*
 
 Racket examples:
 

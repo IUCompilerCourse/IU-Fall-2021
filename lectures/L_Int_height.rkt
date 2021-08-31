@@ -2,9 +2,10 @@
 
 (struct Int (value))
 (struct Prim (op arg*))
-(struct Read ())
-(struct Add (left right))
-(struct Neg (value))
+;; alternative to Prim:
+;;(struct Add (left right))
+;;(struct Neg (value))
+;;(struct Read ())
 
 (define E1 (Int 42))
 (define E2 (Prim 'read '()))
