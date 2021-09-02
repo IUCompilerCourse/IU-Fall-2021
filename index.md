@@ -149,6 +149,7 @@ Sep. 21 | Code Review: Register Allocation     |                               |
 * Github repository for the support code and test suites
     - for [Racket](https://github.com/IUCompilerCourse/public-student-support-code) 
 	- for [Python](https://github.com/IUCompilerCourse/python-student-support-code)
+* Web server for running the reference compiler on a program: [Racket version](https://homes.luddy.indiana.edu/classes/fall2021/engr/e513-jsiek/compiler.php)
 * [Racket Download](https://download.racket-lang.org/)
 * [Racket Documentation](https://docs.racket-lang.org/)
 * [Python 3.10 Download](https://www.python.org/downloads/release/python-3100rc1/)
