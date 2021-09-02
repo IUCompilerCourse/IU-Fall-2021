@@ -44,8 +44,6 @@ Example:
                y)])
       (- x))
     =>
-    locals:
-      '(x y)
     start:
         y = (- 42);
         x = y;
@@ -64,33 +62,30 @@ and one for not-tail `nt` position.
 
 Recommended function organization:
 
-    explicate-tail : exp -> (Pair tail (Listof var))
+    explicate-tail : exp -> tail
     
-    explicate-assign : exp -> var -> tail -> (Pair tail (Listof var))
+    explicate-assign : exp -> var -> tail -> tail
 
 The `explicate-tail` function takes and L^ANF_Var expression in tail position
-and returns a C_Var tail and a list of variables that use to be let-bound
-in the expression. This list of variables is then stored in the `info`
-field of the `Program` node.
+and returns a C_Var tail.
 
 The `explicate-assign` function takes 1) an R1 expression that is not
 in tail position, that is, the right-hand side of a `let`, 2) the
 `let`-bound variable, and 3) the C0 tail for the body of the `let`.
-The output of `explicate-assign` is a C0 tail and a list of variables
-that were let-bound. 
+The output of `explicate-assign` is a C0 tail. 
 
 Here's a trace of these two functions on the above example.
 
     explicate-tail (let ([x (let ([y (- 42)]) y)]) (- x))
       explicate-tail (- x)
-        => {return (- x);}, ()
+        => {return (- x);}
       explicate-assign (let ([y (- 42)]) y) x {return (- x);}
         explicate-assign y x {return (- x);}
-          => {x = y; return (- x)}, ()
+          => {x = y; return (- x)}
         explicate-assign (- 42) y {x = y; return (- x);}
-          => {y = (- 42); x = y; return (- x);}, ()
-        => {y = (- 42); x = y; return (- x);}, (y)
-      => {y = (- 42); x = y; return (- x);}, (x y)
+          => {y = (- 42); x = y; return (- x);}
+        => {y = (- 42); x = y; return (- x);}
+      => {y = (- 42); x = y; return (- x);}
 
 ## Select Instructions
 
