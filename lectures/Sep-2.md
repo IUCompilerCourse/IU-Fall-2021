@@ -1,5 +1,27 @@
-# Lecture: Explicate Control, 
+# Lecture: Explicate, Select, Assign, Patch, Prelude & Conclusion
 
+	L_Var                                   L_Var
+	|    uniquify                           |    remove complex operands
+	V                                       V
+	L_Var                                   L_Var
+	|    remove complex operands            |    select instructions
+	V                                       V
+    L_Var                                   x86_Var
+    |    explicate control                  |    assign homes
+	V                                       V
+	C_Var                                   x86*
+	|    select instructions                |    patch instructions
+	V                                       V
+	x86_Var                                 x86*
+	|    assign homes                       |    prelude & conclusion
+	V                                       V
+	x86*                                    x86
+	|    patch instructions
+	V
+	x86*
+	|    prelude & conclusion
+	V
+	x86
 
 ## Explicate Control (Racket only)
 
