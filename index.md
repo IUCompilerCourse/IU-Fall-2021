@@ -135,8 +135,8 @@ Aug. 26 | [Compiling from L_Var to x86](./lectures/Aug-26.md) | Ch. 1          |
 Aug. 31 | [Uniquify, Remove Complex Operands, Explicate Control](./lectures/Aug-31.md) | Ch. 2         |
 Sep. 2  | [Select Instructions, Assign Homes, Patch Instructions, Prelude & Conclusion](./lectures/Sep-2.md) | | 
 Sep. 6  |                                      |                               | Integers and Variables, submit in [Racket](https://autograder.sice.indiana.edu/web/project/319) or [Python](https://autograder.sice.indiana.edu/web/project/320)
-Sep. 7 | Code Review: Integers and Variables   |                               | 
-Sep. 9 | Register Allocation: liveness analysis, interference graph | Ch. 3    |
+Sep. 7 | [Register Allocation: liveness analysis, interference graph](./lectures/Sep-7.md)  |         | 
+Sep. 9 | Code Review: Integers and Variables   | Ch. 3    |
 Sep. 14 | Register Allocation: graph coloring  |                               |
 Sep. 16 | Compiling from L_If to x86           |                               |
 Sep. 20 |                                      |                               |  Register Allocation
