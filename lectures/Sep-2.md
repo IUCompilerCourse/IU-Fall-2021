@@ -108,7 +108,7 @@ Some cases can be handled with a single instruction.
 The `read` operation must be turned into a 
 call to the `read_int` function in `runtime.c`.
 
-    x = (read);
+    x = (read);                   x = input_int()
     =>
     callq read_int
     movq %rax, x
@@ -198,7 +198,7 @@ instructions and use rax to hold the value at location -16.
 
 We generate a prelude and conclusion for the main procedure.
 
-The prelude  
+The prelude
 1. saves the old base pointer, 
 2. moves the base pointer to the top of the stack,
 3. moves the stack pointer down passed all the local variables, and

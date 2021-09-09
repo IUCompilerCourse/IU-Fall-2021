@@ -137,7 +137,7 @@ Sep. 2  | [Select Instructions, Assign Homes, Patch Instructions, Prelude & Conc
 Sep. 6  |                                      |                               | Integers and Variables, submit in [Racket](https://autograder.sice.indiana.edu/web/project/319) or [Python](https://autograder.sice.indiana.edu/web/project/320)
 Sep. 7 | [Register Allocation: liveness analysis, interference graph](./lectures/Sep-7.md)  |         | 
 Sep. 9 | Code Review: Integers and Variables   | Ch. 3    |
-Sep. 14 | Register Allocation: graph coloring  |                               |
+Sep. 14 | [Register Allocation: graph coloring](./lectures/Sep-14.md)  |                               |
 Sep. 16 | Compiling from L_If to x86           |                               |
 Sep. 20 |                                      |                               |  Register Allocation
 Sep. 21 | Code Review: Register Allocation     |                               |
