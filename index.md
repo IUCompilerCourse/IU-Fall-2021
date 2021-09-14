@@ -43,7 +43,7 @@ github:
 
 **Office hours**
 
-* Jeremy Siek (jsiek): TBD
+* Jeremy Siek (jsiek): Mon 11am-noon, Tue 2-3pm, in Luddy 3014 (or nearby).
 
 **Topics:**
 
@@ -132,12 +132,12 @@ week late with a penalty of 10%.
 Day     | Lecture Topic                        | Reading Due                   | Assignment Due
 Aug. 24 | [Introduction](./lectures/Aug-24.md) |                               |
 Aug. 26 | [Compiling from L_Var to x86](./lectures/Aug-26.md) | Ch. 1          |
-Aug. 31 | Uniquify, Remove Complex Operands, Explicate Control | Ch. 2         |
-Sep. 2  | Select Instructions, Assign Homes, Patch Instructions, Prelude & Conclusion | | 
+Aug. 31 | [Uniquify, Remove Complex Operands, Explicate Control](./lectures/Aug-31.md) | Ch. 2         |
+Sep. 2  | [Select Instructions, Assign Homes, Patch Instructions, Prelude & Conclusion](./lectures/Sep-2.md) | | 
 Sep. 6  |                                      |                               | Integers and Variables, submit in [Racket](https://autograder.sice.indiana.edu/web/project/319) or [Python](https://autograder.sice.indiana.edu/web/project/320)
-Sep. 7 | Code Review: Integers and Variables   |                               | 
-Sep. 9 | Register Allocation: liveness analysis, interference graph | Ch. 3    |
-Sep. 14 | Register Allocation: graph coloring  |                               |
+Sep. 7 | [Register Allocation: liveness analysis, interference graph](./lectures/Sep-7.md)  |         | 
+Sep. 9 | Code Review: Integers and Variables   | Ch. 3    |
+Sep. 14 | [Register Allocation: graph coloring](./lectures/Sep-14.md)  |                               |
 Sep. 16 | Compiling from L_If to x86           |                               |
 Sep. 20 |                                      |                               |  Register Allocation
 Sep. 21 | Code Review: Register Allocation     |                               |
@@ -149,6 +149,7 @@ Sep. 21 | Code Review: Register Allocation     |                               |
 * Github repository for the support code and test suites
     - for [Racket](https://github.com/IUCompilerCourse/public-student-support-code) 
 	- for [Python](https://github.com/IUCompilerCourse/python-student-support-code)
+* Web server for running the reference compiler on a program: [Racket version](https://homes.luddy.indiana.edu/classes/fall2021/engr/e513-jsiek/compiler.php)
 * [Racket Download](https://download.racket-lang.org/)
 * [Racket Documentation](https://docs.racket-lang.org/)
 * [Python 3.10 Download](https://www.python.org/downloads/release/python-3100rc1/)

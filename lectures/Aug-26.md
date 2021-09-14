@@ -31,7 +31,7 @@ Python version:
 
 	exp ::= int | input_int() | - exp | exp + exp | var
 	stmt ::= print(exp) | exp | var = exp
-	L_Int ::= stmt*
+	L_Var ::= stmt*
 
 Racket examples:
 
@@ -75,77 +75,4 @@ Intel Machine:
     * program counter
     * registers
     * memory (stack and heap)
-
-Example compilation of a Racket/Python program:
-
-	(+ 10 32)             10 + 32
-
-    =>
-
-		.globl main
-	main:
-		movq	$10, %rax
-		addq	$32, %rax
-		movq	%rax, %rdi
-		callq	print_int
-		movq    $0, %rax
-		retq
-
-
-## What's different?
-
-1. 2 args and return value vs. 2 arguments with in-place update
-2. nested expressions vs. atomic expressions
-3. order of evaluation: left-to-right depth-first, vs. sequential
-4. unbounded number of variables vs. registers + memory
-5. variables can overshadow vs. uniquely named registers + memory
-
-* `select_instructions`: convert each L_Var operation into a sequence
-  of instructions
-* `remove_complex_opera*`: ensure that each sub-expression is
-  atomic by introducing temporary variables
-* `explicate_control`: convert from the AST to basic blocks with jumps
-* `assign_homes`: replace variables with stack locations
-* `uniquify`: rename variables so they are all unique
-
-
-In what order should we do these passes?
-	
-Gordian Knot: 
-* instruction selection
-* register/stack allocation
-
-solution: do instruction selection optimistically, assuming all
-	  registers then do register allocation then patch up the
-	  instructions
-
-Passes for Racket and Python L_Var compilers:
-
-	L_Var                                   L_Var
-	|    uniquify                           |    remove complex operands
-	V                                       V
-	L_Var                                   L_Var
-	|    remove complex operands            |    select instructions
-	V                                       V
-    L_Var                                   x86_Var
-    |    explicate control                  |    assign homes
-	V                                       V
-	C_Var                                   x86*
-	|    select instructions                |    patch instructions
-	V                                       V
-	x86_Var                                 x86*
-	|    assign homes                       |    prelude & conclusion
-	V                                       V
-	x86*                                    x86
-	|    patch instructions
-	V
-	x86*
-	|    prelude & conclusion
-	V
-	x86
-
-
-
-
-    
 
