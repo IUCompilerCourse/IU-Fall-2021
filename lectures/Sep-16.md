@@ -1,5 +1,7 @@
 # Concrete Syntax of L_If
 
+Racket
+
     bool ::= #t | #f
     cmp ::=  eq? | < | <= | > | >= 
     exp ::= int | (read) | (- exp) | (+ exp exp) | (- exp exp)
@@ -7,62 +9,103 @@
         | bool | (and exp exp) | (or exp exp) | (not exp) 
         | (cmp exp exp) | (if exp exp exp) 
     L_If ::= exp
-    
+
+Python
+
+    binop ::= + | - | and | or | == | != | < | <= | > | >=
+	uniop ::= - | not
+	exp ::= int | input_int() | uniop exp | exp binop exp | var
+	    | True | False | exp if exp else exp
+    stmt ::= print(exp) | exp | var = exp | if exp: stmt+ else: stmt+
+	L_If ::= stmt*
+
 New things:
-* Boolean literals: `#t` and `#f`.
+* Boolean literals: true and false.
 * Logical operators on Booleans: `and`, `or`, `not`.
-* Comparison operators: `eq?`, `<`, etc.
+* Comparison operators: equal, less than, etc.
 * The `if` conditional expression. Branching!
 * Subtraction on integers.
 
 
 # Semantics of L_If
 
-    (define (interp-op op)
-      (match op
-        ...
-        ['not (lambda (v) (match v [#t #f] [#f #t]))]
-        ['eq? (lambda (v1 v2)
-                (cond [(or (and (fixnum? v1) (fixnum? v2))
-                           (and (boolean? v1) (boolean? v2)))
-                       (eq? v1 v2)]))]
-        ['< (lambda (v1 v2)
-              (cond [(and (fixnum? v1) (fixnum? v2)) (< v1 v2)]))]
-        ...))
+	class InterpPif(InterpPvar):
 
-    (define (interp-exp env)
-      (lambda (e)
-        (define recur (interp-exp env))
-        (match e
-          ...
-          [(Bool b) b]
-          [(If cnd thn els)
-           (define b (recur cnd))
-           (match b
-             [#t (recur thn)]
-             [#f (recur els)])] 
-         [(Prim 'and (list e1 e2))
-           (define v1 (recur e1))
-           (match v1
-             [#t (match (recur e2) [#t #t] [#f #f])]
-             [#f #f])]
-          [(Prim op args)
-           (apply (interp-op op) (for/list ([e args]) (recur e)))]
-          )))
+	  def interp_cmp(self, cmp):
+		match cmp:
+		  case Lt():
+			return lambda x, y: x < y
+		  case LtE():
+			return lambda x, y: x <= y
+		  case Gt():
+			return lambda x, y: x > y
+		  case GtE():
+			return lambda x, y: x >= y
+		  case Eq():
+			return lambda x, y: x == y
+		  case NotEq():
+			return lambda x, y: x != y
 
-    (define (interp-Lif p)
-      (match p
-        [(Program info e)
-         ((interp-exp '()) e)]
-        ))
+	  def interp_exp(self, e, env):
+		match e:
+		  case IfExp(test, body, orelse):
+			match self.interp_exp(test, env):
+			  case True:
+				return self.interp_exp(body, env)
+			  case False:
+				return self.interp_exp(orelse, env)
+		  case BinOp(left, Sub(), right):
+			l = self.interp_exp(left, env)
+			r = self.interp_exp(right, env)
+			return l - r
+		  case UnaryOp(Not(), v):
+			return not self.interp_exp(v, env)
+		  case BoolOp(And(), values):
+			left = values[0]; right = values[1]
+			match self.interp_exp(left, env):
+			  case True:
+				return self.interp_exp(right, env)
+			  case False:
+				return False
+		  case BoolOp(Or(), values):
+			left = values[0]; right = values[1]
+			match self.interp_exp(left, env):
+			  case True:
+				return True
+			  case False:
+				return self.interp_exp(right, env)
+		  case Compare(left, [cmp], [right]):
+			l = self.interp_exp(left, env)
+			r = self.interp_exp(right, env)
+			return self.interp_cmp(cmp)(l, r)
+		  case Let(Name(x), rhs, body):
+			v = self.interp_exp(rhs, env)
+			new_env = dict(env)
+			new_env[x] = v
+			return self.interp_exp(body, new_env)
+		  case _:
+			return super().interp_exp(e, env)
 
+	  def interp_stmts(self, ss, env):
+		if len(ss) == 0:
+		  return
+		match ss[0]:
+		  case If(test, body, orelse):
+			match self.interp_exp(test, env):
+			  case True:
+				return self.interp_stmts(body + ss[1:], env)
+			  case False:
+				return self.interp_stmts(orelse + ss[1:], env)
+		  case _:
+			return super().interp_stmts(ss, env)
+		
 Things to note:
-* Our treatment of Booleans and operations on them is strict in the
-  sense that we don't allow other kinds of values (such as integers)
-  to be treated as if they are Booleans.
+* Our treatment of Booleans and operations on them is strict: we don't
+  allow other kinds of values (such as integers) to be treated as if
+  they are Booleans.
 * `and` is short-circuiting.
-* The handling of primitive operators has been factored out
-  into an auxilliary function named `interp-op`.
+* The handling of comparison operators has been factored out into an
+  auxilliary function named `interp_cmp`.
 
 
 # Type errors and static type checking
@@ -89,71 +132,143 @@ In Typed Racket:
     Arguments: One
     in: (car 1)
 
+In Python:
 
-A type checker, aka. type system, enforces at compile-time that only
+    >>> not 1
+	False
+
+    >>> 1[0]
+    TypeError: 'int' object is not subscriptable	
+
+In PyCharm:
+
+    >>> not 1
+	False
+
+    >>> 1[0]
+	Class 'int' does not define '__getitem__', so the '[]' operator cannot
+	be used on its instances 
+
+A type checker (aka. type system) enforces at compile-time that only
 the appropriate operations are applied to values of a given type.
 
 To accomplish this, a type checker must predict what kind of value
 will be produced by an expression at runtime.
 
-     (not 1)   ;; not an L_If program!
-
 Type checker:
 
-    (define/public (unary-op-types)
-      '((- . ((Integer) . Integer))
-     	(not . ((Boolean) . Boolean))
-        ))
+	class TypeCheckPvar:
 
-    (define/public (binary-op-types)
-      '((+ . ((Integer Integer) . Integer))
-        (- . ((Integer Integer) . Integer))
-     	(and . ((Boolean Boolean) . Boolean))
-	    (or . ((Boolean Boolean) . Boolean))
-     	(< . ((Integer Integer) . Boolean))
-     	(<= . ((Integer Integer) . Boolean))
-     	(> . ((Integer Integer) . Boolean))
-    	(>= . ((Integer Integer) . Boolean))
-	))
-    
-    (define/public (nullary-op-types)
-      '((read . (() . Integer))))
+	  def type_check_exp(self, e, env):
+		match e:
+		  case BinOp(left, Add(), right):
+			l = self.type_check_exp(left, env)
+			check_type_equal(l, int, left)
+			r = self.type_check_exp(right, env)
+			check_type_equal(r, int, right)
+			return int
+		  case UnaryOp(USub(), v):
+			t = self.type_check_exp(v, env)
+			check_type_equal(t, int, v)
+			return int
+		  case Name(id):
+			return env[id]
+		  case Constant(value) if isinstance(value, int):
+			return int
+		  case Call(Name('input_int'), []):
+			return int
+		  case _:
+			raise Exception('error in TypeCheckPvar.type_check_exp, unhandled ' + repr(e))
 
-    (define (type-check-exp env) ;; return a type: Integer, Boolean
-      (lambda (e)
-        (match e
-          [(Var x) (dict-ref env x)]
-          [(Int n) 'Integer]
-          [(Bool b) 'Boolean]
-          [(Let x e body)
-            (define Te ((type-check-exp env) e))
-            (define Tb ((type-check-exp (dict-set env x Te)) body))
-            Tb]
-          ...
-          [(If e1 e2 e3)
-           (define T1 ((type-check-exp env) e1))
-           (unless (equal? T1 'Boolean) (error ...))
-           (define T2 ((type-check-exp env) e2))
-           (define T3 ((type-check-exp env) e3))
-           (unless (equal? T2 T3) (error ...))
-           T2]
-          [(Prim op es)
-            (define-values (new-es ts)
-               (for/lists (exprs types) ([e es]) ((type-check-exp env) e)))
-            (define t-ret (type-check-op op ts))
-            (values (Prim op new-es) t-ret)]
-          [else
-           (error "type-check-exp couldn't match" e)])))
+	  def type_check_stmts(self, ss, env):
+		if len(ss) == 0:
+		  return
+		match ss[0]:
+		  case Assign([lhs], value):
+			t = self.type_check_exp(value, env)
+			if lhs.id in env:
+			  check_type_equal(env[lhs.id], t, value)
+			else:
+			  env[lhs.id] = t
+			return self.type_check_stmts(ss[1:], env)
+		  case Expr(Call(Name('print'), [arg])):
+			t = self.type_check_exp(arg, env)
+			check_type_equal(t, int, arg)
+			return self.type_check_stmts(ss[1:], env)
+		  case Expr(value):
+			self.type_check_exp(value, env)
+			return self.type_check_stmts(ss[1:], env)
+		  case _:
+			raise Exception('error in TypeCheckPvar.type_check_stmt, unhandled ' + repr(s))
 
-    (define (type-check env)
-      (lambda (e)
-        (match e
-          [(Program info body)
-           (define Tb ((type-check-exp '()) body))
-           (unless (equal? Tb 'Integer)
-             (error "result of the program must be an integer, not " Tb))
-           (Program info body)]
-          )))
+	  def type_check_P(self, p):
+		match p:
+		  case Module(body):
+			self.type_check_stmts(body, {})
+
+
+	class TypeCheckPif(TypeCheckPvar):
+
+	  def type_check_exp(self, e, env):
+		match e:
+		  case Constant(value) if isinstance(value, bool):
+			return bool
+		  case IfExp(test, body, orelse):
+			test_t = self.type_check_exp(test, env)
+			check_type_equal(bool, test_t, test)
+			body_t = self.type_check_exp(body, env)
+			orelse_t = self.type_check_exp(orelse, env)
+			check_type_equal(body_t, orelse_t, e)
+			return body_t
+		  case BinOp(left, Sub(), right):
+			l = self.type_check_exp(left, env)
+			check_type_equal(l, int, left)
+			r = self.type_check_exp(right, env)
+			check_type_equal(r, int, right)
+			return int
+		  case UnaryOp(Not(), v):
+			t = self.type_check_exp(v, env)
+			check_type_equal(t, bool, v)
+			return bool 
+		  case BoolOp(op, values):
+			left = values[0]; right = values[1]
+			l = self.type_check_exp(left, env)
+			check_type_equal(l, bool, left)
+			r = self.type_check_exp(right, env)
+			check_type_equal(r, bool, right)
+			return bool
+		  case Compare(left, [cmp], [right]) if isinstance(cmp, Eq) or isinstance(cmp, NotEq):
+			l = self.type_check_exp(left, env)
+			r = self.type_check_exp(right, env)
+			check_type_equal(l, r, e)
+			return bool
+		  case Compare(left, [cmp], [right]):
+			l = self.type_check_exp(left, env)
+			check_type_equal(l, int, left)
+			r = self.type_check_exp(right, env)
+			check_type_equal(r, int, right)
+			return bool
+		  case Let(Name(x), rhs, body):
+			t = self.type_check_exp(rhs, env)
+			new_env = dict(env); new_env[x] = t
+			return self.type_check_exp(body, new_env)
+		  case _:
+			return super().type_check_exp(e, env)
+
+	  def type_check_stmts(self, ss, env):
+		if len(ss) == 0:
+		  return
+		match ss[0]:
+		  case If(test, body, orelse):
+			test_t = self.type_check_exp(test, env)
+			check_type_equal(bool, test_t, test)
+			body_t = self.type_check_stmts(body, env)
+			orelse_t = self.type_check_stmts(orelse, env)
+			check_type_equal(body_t, orelse_t, ss[0])
+			return self.type_check_stmts(ss[1:], env)
+		  case _:
+			return super().type_check_stmts(ss, env)
+
 
 How should the type checker handle the `if` expression?
 
