@@ -138,10 +138,10 @@ Sep. 6  |                                      |                               |
 Sep. 7 | [Register Allocation: liveness analysis, interference graph](./lectures/Sep-7.md)  |         | 
 Sep. 9 | Code Review: Integers and Variables   | Ch. 3    |
 Sep. 14 | [Register Allocation: graph coloring](./lectures/Sep-14.md)  |                               |
-Sep. 16 | [Compiling from L_If to x86](./lectures/Sep-16.md)           |                               |
+Sep. 16 | [The L_If language & type checking](./lectures/Sep-16.md)           |                               |
 Sep. 20 |                                      |                               |  [Register Allocation](https://iu.instructure.com/courses/1996310/assignments/12689957), submit in [Racket](https://autograder.sice.indiana.edu/web/project/326) or [Python](https://autograder.sice.indiana.edu/web/project/327)
 Sep. 21 | Code Review: Register Allocation     |                               |
-
+Sep. 23 | [Compiling L_If to x86](./lectures/Sep-23.md)
 
 **Resources:**
 
