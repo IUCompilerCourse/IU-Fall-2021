@@ -142,6 +142,13 @@ Sep. 16 | [The L_If language & type checking](./lectures/Sep-16.md)           | 
 Sep. 20 |                                      |                               |  [Register Allocation](https://iu.instructure.com/courses/1996310/assignments/12689957), submit in [Racket](https://autograder.sice.indiana.edu/web/project/326) or [Python](https://autograder.sice.indiana.edu/web/project/327)
 Sep. 21 | Code Review: Register Allocation     |                               |
 Sep. 23 | [Compiling L_If to x86](./lectures/Sep-23.md)
+Sep. 28 | Compiling L_If to x86, cont'd        |
+Sep. 30 | 
+Oct. 4  |                                      |                               |  Booleans and Conditionals
+Oct. 5 |
+Oct. 7 |
+Oct. 18 |                                      |                               |  TBD
+
 
 **Resources:**
 
