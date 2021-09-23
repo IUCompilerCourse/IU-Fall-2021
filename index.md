@@ -144,7 +144,7 @@ Sep. 21 | Code Review: Register Allocation     |       Ch. 4                  |
 Sep. 23 | [Compiling L_If to x86](./lectures/Sep-23.md)
 Sep. 28 | Compiling L_If to x86, cont'd        |
 Sep. 30 | 
-Oct. 4  |                                      |                               |  Booleans and Conditionals
+Oct. 4  |                                      |                               |  [Booleans and Conditionals](https://iu.instructure.com/courses/1996310/assignments/12714002), submit in [Racket](https://autograder.sice.indiana.edu/web/project/330) and Python
 Oct. 5 |
 Oct. 7 |
 Oct. 18 |                                      |                               |  TBD
