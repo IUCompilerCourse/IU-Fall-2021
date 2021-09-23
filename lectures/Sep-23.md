@@ -1,4 +1,4 @@
-# More x86 with an eye toward instruction selection for L_If
+# More x86 with an eye toward instruction selection for LIf
 
     cc ::= e | l | le | g | ge
     instr ::= ... | xorq arg, arg | cmpq arg, arg | set<cc> arg
@@ -35,9 +35,9 @@ from the EFLAGS register.
       goto l2;
 
 
-# The C_If intermediate language
+# The CIf intermediate language
 
-Syntax of C_If
+Syntax of CIf
 
     bool ::= #t | #f
     atm ::= int | var | bool
@@ -50,7 +50,7 @@ Syntax of C_If
              goto label; 
            else
              goto label;
-    C_If ::= label1:
+    CIf ::= label1:
                tail1
              label2:
                tail2
@@ -58,13 +58,21 @@ Syntax of C_If
 
 # Explicate Control
 
-Consider the following program
+Consider the following Racket and Python programs
+
+Racket:
 
     (let ([x (read)])
       (let ([y (read)])
         (if (if (< x 1) (eq? x 0) (eq? x 2))
             (+ y 2)
             (+ y 10))))
+
+Python:
+
+    x = input_int()
+    y = input_int()
+    print(y + 2 if (x == 0 if x < 1 else x == 2) else y + 10)
 
 A straightforward way to compile an `if` expression is to recursively
 compile the condition, and then use the `cmpq` and `je` instructions
@@ -99,6 +107,8 @@ condition is not a comparison, but another `if`.  Can we rearrange the
 program so that the condition of the `if` is a comparison?  How about
 pushing the outer `if` inside the inner `if`:
 
+Racket:
+
     (let ([x (read)])
       (let ([y (read)])
         (if (< x 1) 
@@ -109,120 +119,191 @@ pushing the outer `if` inside the inner `if`:
             (+ y 2)
             (+ y 10)))))
 
+Python:
+
+    x = input_int()
+    y = intput_int()
+    print(((y + 2) if x == 0 else (y + 10)) \
+          if (x < 1) \
+          else ((y + 2) if (x == 2) else (y + 10)))
+
 Unfortunately, now we've duplicated the two branches of the outer `if`.
 A compiler must *never* duplicate code!
 
 Now we come to the reason that our Cn programs take the forms of a
-control flow *graph* instead of a *tree*. A graph allows multiple
-edges to point to the save vertex, thereby enabling sharing instead of
-duplication. Recall that the nodes of the control flow graph are
-labeled `tail` statements and the edges are expressed with `goto`.
+*graph* instead of a *tree*. A graph allows multiple edges to point to
+the same vertex, thereby enabling sharing instead of duplication. The
+nodes of this graph are the labeled `tail` statements and the edges
+are expressed with `goto`.
 
-Using these insights, we can compile the example to the following C_If
+Using these insights, we can compile the example to the following CIf
 program.
-
+    
     (let ([x (read)])
       (let ([y (read)])
         (if (if (< x 1) (eq? x 0)  (eq? x 2))
             (+ y 2)
             (+ y 10))))
-    => 
+    =>
     start:
-        x = (read);
-        y = (read);
-        if (< x 1)
-           goto inner_then;
-        else
-           goto inner_else;
-    inner_then:
-        if (eq? x 0)
-           goto outer_then;
-        else
-           goto outer_else;
-    inner_else:
-        if (eq? x 2)
-           goto outer_then;
-        else
-           goto outer_else;
-    outer_then:
-        return (+ y 2);
-    outer_else:
-        return (+ y 10);
+      x = input_int()
+      y = input_int()
+      if x < 1:
+        goto block_8
+      else:
+        goto block_9
+    block_8:
+      if x == 0:
+        goto block_4
+      else:
+        goto block_5
+    block_9:
+      if x == 2:
+        goto block_6
+      else:
+        goto block_7
+    block_4:
+      goto block_2
+    block_5:
+      goto block_3
+    block_6:
+      goto block_2
+    block_7:
+      goto block_3
+    block_2:
+      tmp_0 = y + 2
+      goto block_1
+    block_3:
+      tmp_0 = y + 10
+      goto block_1
+    block_1:
+      print(tmp_0)
+      return 0
+
+Python:
+
+    x = input_int()
+    y = input_int()
+    print(y + 2 if (x == 0 if x < 1 else x == 2) else y + 10)
+    =>
+    start:
+      x = input_int()
+      y = input_int()
+      if x < 1:
+        goto block_8
+      else:
+        goto block_9
+    block_8:
+      if x == 0:
+        goto block_4
+      else:
+        goto block_5
+    block_9:
+      if x == 2:
+        goto block_6
+      else:
+        goto block_7
+    block_4:
+      goto block_2
+    block_5:
+      goto block_3
+    block_6:
+      goto block_2
+    block_7:
+      goto block_3
+    block_2:
+      tmp_0 = y + 2
+      goto block_1
+    block_3:
+      tmp_0 = y + 10
+      goto block_1
+    block_1:
+      print(tmp_0)
+      return 0
+
 
 Notice that we've acheived both objectives.
 1. The condition of each `if` is a comparison.
 2. We have not duplicated the two branches of the outer `if`.
 
 
-A new function for compiling the condition expression of an `if`:
-
-explicate-pred : L_If_exp x C_If_tail x C_If_tail -> C_If_tail x var list
-
-    (explicate-pred #t B1 B2)  => B1
+Racket:
     
-    (explicate-pred #f B1 B2)  => B2
+	explicate-tail : LIf_exp -> CIf_tail x var list
+	    
+ 	    generates code for expressions in tail position
+	   
+	explicate-assign : LIf_exp -> var -> CIf_tail -> CIf_tail x var list
+	    
+	    generates code for an `let` by cases on the right-hand side expression
+	   
+	explicate-pred : LIf_exp x CIf_tail x CIf_tail -> CIf_tail x var list
+	    
+	    generates code for an `if` expression by cases on the condition.
+
+Python:
+
+    def explicate_stmt(self, s: stmt, cont: List[stmt],
+                       basic_blocks: Dict[str, List[stmt]]) -> List[stmt]
+
+        generates code for statements
+
+    def explicate_assign(self, e: expr, x: Variable, cont: List[stmt],
+                         basic_blocks: Dict[str, List[stmt]]) -> List[stmt]
+
+        generates code for an assignment by cases on the right-hand side expression.
+
+    def explicate_effect(self, e: expr, cont: List[stmt],
+                         basic_blocks: Dict[str, List[stmt]]) -> List[stmt]
+        
+		generates code for expressions as statements, so their result is
+		ignored and only their side effects matter.
+
+    def explicate_pred(self, cnd: expr, thn: List[stmt], els: List[stmt],
+                       basic_blocks: Dict[str, List[stmt]]) -> List[stmt]
+
+        generates code for `if` expression or statement by cases on the condition.
+
+
+Example:
+
+    (let ([x (read)])
+       (if (eq? x 0) 42 777))
+
+    x = input_int()
+	if x == 0:
+	    print(42)
+	else:
+	    print(777)
+
+Example:
     
-    (explicate-pred (< atm1 atm2) B1 B2)  =>  if (< atm1 atm2)
-                                                goto l1;
-                                              else
-                                                goto l2;
-         where B1 and B2 are added to the CFG with labels l1 and l2.
+	(let ([y (read)])
+	   (let ([x (if (eq? y 0) 40 777)])
+	      (+ x 2)))
 
-    (explicate-pred (if e1 e2 e3) B1 B2)   =>   B5
-         where we add B1 and B2 to the CFG with labels l1 and l2.
-               (explicate-pred e2 (goto l1) (goto l2))   =>  B3
-               (explicate-pred e3 (goto l1) (goto l2))   =>  B4
-               (explicate-pred e1 B3 B4)                 =>  B5
+    y = input_int()
+	x = (40 if y == 0 else 777)
+	print(x + 2)
 
-explicate-tail : L_If_exp -> C_If_tail x var list
+Example:
 
-    (explicate-tail (if e1 e2 e3))   =>   B3
-         where (explicate-tail e2) => B1
-               (explicate-tail e3) => B2
-               (explicate-pred e1 B1 B2) => B3
+    (if #t 42 777)
+	
+	if True:
+	    print(42)
+	else:
+	    print(777)
+		
+Example:
 
+    (let ([x (read)])
+      (let ([y (read)])
+        (if (if (< x 1) (eq? x 0)  (eq? x 2))
+            (+ y 2)
+            (+ y 10))))
 
-explicate-assign : L_If_exp -> var -> C_If_tail -> C_If_tail x var list
-
-    (explicate-assign (Int n) x B1)  => (Seq (Assign (Var x) (Int n)) B1)
-
-    (explicate-assign (if e1 e2 e3) x B1)   =>   B4
-         where we add B1 to the CFG with label l1
-               (explicate-assign e2 x (goto l1))   =>   B2
-               (explicate-assign e3 x (goto l1))   =>   B3
-               (explicate-pred e1 B2 B3)           =>   B4
-
-
-example:
-
-    (explicate-tail
-      (let ([x (read)])
-        (let ([y (read)])
-          (if (if (< x 1) (eq? x 0)  (eq? x 2))
-              (+ y 2)
-              (+ y 10)))))
-      (explicate-tail (let ([y (read)]) ...)) => B1
-         (explicate-tail (if ... (+ y 2) (+ y 10))) => B2
-            (explicate-tail (+ y 2)) => B3 = return (+ y 2);
-            (explicate-tail (+ y 10)) => B4 = return (+ y 10);
-            (explicate-pred (if (< x 1) (eq? x 0) (eq? x 2) B3 B4)) => B2
-               put B3 and B4 in the CFG, get labels l3 l4.
-               (explicate-pred (eq? x 0) (goto l3) (goto l4)) => B6
-                  B6 = if (eq? x 0)
-                         goto l3;
-                       else
-                         goto l4;
-               (explicate-pred (eq? x 2) (goto l3) (goto l4)) => B7
-                  B7 = if (eq? x 2)
-                         goto l3;
-                       else
-                         goto l4;
-               (explicate-pred (< x 1) B6 B7) => B2
-                  put B6 and B7 into CFG, get labels l6, l7.
-                  B2 = if (< x 1)
-                         goto l6;
-                       else
-                         goto l7;
-         (explicate-assign (read) y B2) => (y = (read); B2) = B1
-      (explicate-assign (read) x B1) => x = (read); B1
+    x = input_int()
+    y = input_int()
+    print(y + 2 if (x == 0 if x < 1 else x == 2) else y + 10)
 
