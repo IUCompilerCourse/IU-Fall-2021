@@ -2,7 +2,7 @@
 
 FROM eecsautograder/ubuntu18:latest
 
-RUN apt-get update && apt-get install -y racket
+RUN apt-get update && apt-get install -y software-properties-common && add-apt-repository ppa:plt/racket && apt-get update && apt-get install -y racket
 
 RUN raco setup --doc-index --force-user-docs
 
