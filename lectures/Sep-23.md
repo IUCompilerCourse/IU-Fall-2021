@@ -91,10 +91,7 @@ But notice that we used two `cmpq`, a `setl`, and a `movzbq`
 when it would have been better to use a single `cmpq` with
 a `jl`.
 
-    callq read_int
-    movq %rax, x
-    callq read_int
-    movq %rax, y
+    ...
     cmpq $1, x          ;; (if (< x 1) ...)
     jl then_branch1
     jmp else_branch1
@@ -145,40 +142,6 @@ program.
             (+ y 2)
             (+ y 10))))
     =>
-    start:
-      x = input_int()
-      y = input_int()
-      if x < 1:
-        goto block_8
-      else:
-        goto block_9
-    block_8:
-      if x == 0:
-        goto block_4
-      else:
-        goto block_5
-    block_9:
-      if x == 2:
-        goto block_6
-      else:
-        goto block_7
-    block_4:
-      goto block_2
-    block_5:
-      goto block_3
-    block_6:
-      goto block_2
-    block_7:
-      goto block_3
-    block_2:
-      tmp_0 = y + 2
-      goto block_1
-    block_3:
-      tmp_0 = y + 10
-      goto block_1
-    block_1:
-      print(tmp_0)
-      return 0
 
 Python:
 
@@ -229,39 +192,27 @@ Notice that we've acheived both objectives.
 
 Racket:
     
-	explicate-tail : LIf_exp -> CIf_tail x var list
-	    
+	explicate-tail : LIf_exp -> CIf_tail
  	    generates code for expressions in tail position
-	   
-	explicate-assign : LIf_exp -> var -> CIf_tail -> CIf_tail x var list
-	    
+	explicate-assign : LIf_exp -> var -> CIf_tail -> CIf_tail
 	    generates code for an `let` by cases on the right-hand side expression
-	   
-	explicate-pred : LIf_exp x CIf_tail x CIf_tail -> CIf_tail x var list
-	    
+	explicate-pred : LIf_exp x CIf_tail x CIf_tail -> CIf_tail
 	    generates code for an `if` expression by cases on the condition.
 
 Python:
 
     def explicate_stmt(self, s: stmt, cont: List[stmt],
                        basic_blocks: Dict[str, List[stmt]]) -> List[stmt]
-
         generates code for statements
-
     def explicate_assign(self, e: expr, x: Variable, cont: List[stmt],
                          basic_blocks: Dict[str, List[stmt]]) -> List[stmt]
-
         generates code for an assignment by cases on the right-hand side expression.
-
     def explicate_effect(self, e: expr, cont: List[stmt],
                          basic_blocks: Dict[str, List[stmt]]) -> List[stmt]
-        
 		generates code for expressions as statements, so their result is
 		ignored and only their side effects matter.
-
     def explicate_pred(self, cnd: expr, thn: List[stmt], els: List[stmt],
                        basic_blocks: Dict[str, List[stmt]]) -> List[stmt]
-
         generates code for `if` expression or statement by cases on the condition.
 
 
