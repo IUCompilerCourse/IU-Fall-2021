@@ -142,6 +142,35 @@ program.
             (+ y 2)
             (+ y 10))))
     =>
+	start:
+		x = (read);
+		y = (read);
+		if (< x 1)
+		   goto block_8;
+		else
+		   goto block_9;
+	block_8:
+		if (eq? x 0)
+		   goto block_4;
+		else
+		   goto block_5;
+	block_9:
+		if (eq? x 2)
+		   goto block_6;
+		else
+		   goto block_7;
+	block_4:
+		goto block_2;
+	block_5:
+		goto block_3;
+	block_6:
+		goto block_2;
+	block_7:
+		goto block_3;
+	block_2:
+		return (+ y 2);
+	block_3:
+		return (+ y 10);
 
 Python:
 
