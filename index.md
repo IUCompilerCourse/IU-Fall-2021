@@ -131,23 +131,23 @@ week late with a penalty of 10%.
 
 Day     | Lecture Topic                        | Reading Due                   | Assignment Due
 Aug. 24 | [Introduction](./lectures/Aug-24.md) |                               |
-Aug. 26 | [Compiling from L_Var to x86](./lectures/Aug-26.md) | Ch. 1          |
+Aug. 26 | [Compiling from LVar to x86](./lectures/Aug-26.md) | Ch. 1          |
 Aug. 31 | [Uniquify, Remove Complex Operands, Explicate Control](./lectures/Aug-31.md) | Ch. 2         |
 Sep. 2  | [Select Instructions, Assign Homes, Patch Instructions, Prelude & Conclusion](./lectures/Sep-2.md) | | 
 Sep. 6  |                                      |                               | [Integers and Variables](https://iu.instructure.com/courses/1996310/assignments/12582634), submit in [Racket](https://autograder.sice.indiana.edu/web/project/319) or [Python](https://autograder.sice.indiana.edu/web/project/320)
 Sep. 7 | [Register Allocation: liveness analysis, interference graph](./lectures/Sep-7.md)  |         | 
 Sep. 9 | Code Review: Integers and Variables   | Ch. 3    |
 Sep. 14 | [Register Allocation: graph coloring](./lectures/Sep-14.md)  |                               |
-Sep. 16 | [The L_If language & type checking](./lectures/Sep-16.md)           |                               |
+Sep. 16 | [The LIf language & type checking](./lectures/Sep-16.md)           |                               |
 Sep. 20 |                                      |                               |  [Register Allocation](https://iu.instructure.com/courses/1996310/assignments/12689957), submit in [Racket](https://autograder.sice.indiana.edu/web/project/326) or [Python](https://autograder.sice.indiana.edu/web/project/327)
 Sep. 21 | Code Review: Register Allocation     |       Ch. 4                  |
-Sep. 23 | [Compiling L_If to x86](./lectures/Sep-23.md)
-Sep. 28 | Compiling L_If to x86, cont'd        |
+Sep. 23 | [Compiling LIf to x86](./lectures/Sep-23.md)
+Sep. 28 | [Compiling LIf to x86, cont'd](./lectures/Sep-28.md)        |
 Sep. 30 | 
 Oct. 4  |                                      |                               |  [Booleans and Conditionals](https://iu.instructure.com/courses/1996310/assignments/12714002), submit in [Racket](https://autograder.sice.indiana.edu/web/project/330) and [Python](https://autograder.sice.indiana.edu/web/project/331)
 Oct. 5 |
 Oct. 7 |
-Oct. 18 |                                      |                               |  TBD
+Oct. 18 |                                      |                               |  Loops and Dataflow Analysis
 
 
 **Resources:**
