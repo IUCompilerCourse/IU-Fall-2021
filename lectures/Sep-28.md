@@ -53,7 +53,6 @@ Example:
             jmp outer_else
         inner_else:
             cmpq $2, x
-                            live after ??  {y} (union)
             je outer_then
             jmp outer_else
         outer_then:           {y}
@@ -64,6 +63,10 @@ Example:
             movq y, %rax
             addq $10, %rax
             jmp conclusion
+
+
+
+
 
 Q: In what *order* should we process the blocks? 
 A: Reverse topological order.
@@ -153,12 +156,12 @@ blocks. So instead of producing code, we'll produces promises of code.
 In racket, use `delay` to create a promise. Then, in places were we
 actually need the code, use `force` to run the promise.
     
-    (define (create_block block) 
+    (define (create_block tail) 
       (delay
-        (define b (force block))
-        (match b
+        (define t (force tail))
+        (match t
           [(Goto label) (Goto label)]
-          [else (Goto (add-node b))])))
+          [else (Goto (add-node t))])))
     
 
 ### Remove Jumps
