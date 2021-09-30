@@ -120,7 +120,8 @@ Perform liveness analysis on every block:
 	block8: {rsp, sum}
     
 We see changes in blocks 5, 7, and 8, so we again perform the analysis
-on every block.
+on the blocks that depend on them wrt. liveness (i.e. in-edges), 
+which is start, 5, 7, and 8.
 
 	mainstart: {}
 	block5: {i, rsp, sum}
@@ -187,7 +188,7 @@ Example: (liveness analysis)
 The lattice for abstract states:
 
 * An element is a set of variables (the ones that may be live).
-* The partial ordering is the set containment, i.e. x ⊆ y.
+* The partial ordering is the set containment, i.e. x ⊑ y iff x ⊆ y.
 * The bottom element is the empty set.
 * The join operator is set union.
   
