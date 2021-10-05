@@ -143,10 +143,10 @@ Sep. 20 |                                      |                               |
 Sep. 21 | Code Review: Register Allocation     |       Ch. 4                  |
 Sep. 23 | [Compiling LIf to x86](./lectures/Sep-23.md)
 Sep. 28 | [Compiling LIf to x86, cont'd](./lectures/Sep-28.md)        |
-Sep. 30 | 
+Sep. 30 | [Loops and Dataflow Analysis](./lectures/Sep-30.md)
 Oct. 4  |                                      |                               |  [Booleans and Conditionals](https://iu.instructure.com/courses/1996310/assignments/12714002), submit in [Racket](https://autograder.sice.indiana.edu/web/project/330) and [Python](https://autograder.sice.indiana.edu/web/project/331)
-Oct. 5 |
-Oct. 7 |
+Oct. 5 | [More Dataflow Analysis](./lectures/Oct-5.md) | |
+Oct. 7 | 
 Oct. 18 |                                      |                               |  Loops and Dataflow Analysis
 
 
