@@ -28,7 +28,9 @@ is obviously pure (no side effects) it can be discarded.
 	loop:
 	    loop-body
 
-     
+## Select Instructions
+
+Racket: A call to `read` may now appear as a stand-alone statements.
 
 
 ## Remove Jumps
