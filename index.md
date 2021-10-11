@@ -147,7 +147,7 @@ Sep. 30 | [Loops and Dataflow Analysis](./lectures/Sep-30.md)
 Oct. 4  |                                      |                               |  [Booleans and Conditionals](https://iu.instructure.com/courses/1996310/assignments/12714002), submit in [Racket](https://autograder.sice.indiana.edu/web/project/330) and [Python](https://autograder.sice.indiana.edu/web/project/331)
 Oct. 5 | [More Dataflow Analysis](./lectures/Oct-5.md) | |
 Oct. 7 | Code Review: Conditionals
-Oct. 12 | Loops: RCO, Explicate, Remove Jumps
+Oct. 12 | [Loops: RCO, Explicate, Remove Jumps](./lectures/Oct-12.md)
 Oct. 14 | Tuples and Garbage Collection
 Oct. 18 |                                      |                               |  [Loops and Dataflow Analysis](), submit in [Racket](https://autograder.sice.indiana.edu/web/project/335) or [Python](https://autograder.sice.indiana.edu/web/project/336)
 Oct. 19 | Review for Midterm
