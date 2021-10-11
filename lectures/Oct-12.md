@@ -1,11 +1,13 @@
 # Lecture: Compiling Loops
 
+
 ## Remove Complex Operands
 
 The condition of `while` may be a complex expression.
 
 For Racketeers, `while`, `set!`, and `begin` are complex expressions
 and all their subexpressions are allowed to be complex.
+
 
 ## Explicate Control
 
@@ -27,6 +29,7 @@ is obviously pure (no side effects) it can be discarded.
 	
 	loop:
 	    loop-body
+
 
 ## Select Instructions
 
