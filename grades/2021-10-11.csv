@@ -1,0 +1,20 @@
+Student,ID,SIS Login ID,Section,IntegersAndVariables (12582634),RegisterAllocation (12689957),Conditionals (12714002),Loops (12740229),Assignments Current Score,Assignments Unposted Current Score,Assignments Final Score,Assignments Unposted Final Score,Final Exam Current Score,Final Exam Unposted Current Score,Final Exam Final Score,Final Exam Unposted Final Score,Midterm Exam Current Score,Midterm Exam Unposted Current Score,Midterm Exam Final Score,Midterm Exam Unposted Final Score,Quizzes Current Score,Quizzes Unposted Current Score,Quizzes Final Score,Quizzes Unposted Final Score,Current Score,Unposted Current Score,Final Score,Unposted Final Score,Current Grade,Unposted Current Grade,Final Grade,Unposted Final Grade
+    Points Possible,,,,10.00,10.00,20.00,20.00,(read only),(read only),(read only),(read only),(read only),(read only),(read only),(read only),(read only),(read only),(read only),(read only),(read only),(read only),(read only),(read only),(read only),(read only),(read only),(read only),(read only),(read only),(read only),(read only)
+"Aghajani, Mohammad",6514343,maghajan,FA21-BL-ENGR-E513-21361,9.00,9.00,,,90.00,90.00,30.00,30.00,,,,,,,,,,,,,90.00,90.00,30.00,30.00,A-,A-,F,F
+"Bowman, Samuel",6263007,bowmansa,FA21-BL-CSCI-P423-18429,10.00,10.00,,,100.00,100.00,33.33,33.33,,,,,,,,,,,,,100.00,100.00,33.33,33.33,A+,A+,F,F
+"Chen, Hongbo",6336282,hc50,FA21-BL-CSCI-P523-18430,10.00,10.00,,,100.00,100.00,33.33,33.33,,,,,,,,,,,,,100.00,100.00,33.33,33.33,A+,A+,F,F
+"Cunningham, Trevor",6325679,trejcunn,FA21-BL-CSCI-P423-18429,10.00,0.00,,,50.00,50.00,16.67,16.67,,,,,,,,,,,,,50.00,50.00,16.67,16.67,F,F,F,F
+"Ding, Chenchao",6441630,cd17,FA21-BL-CSCI-P523-18430,10.00,10.00,,,100.00,100.00,33.33,33.33,,,,,,,,,,,,,100.00,100.00,33.33,33.33,A+,A+,F,F
+"Gress, Marshal",6196981,mgress,FA21-BL-CSCI-P423-18429,10.00,9.00,,,95.00,95.00,31.67,31.67,,,,,,,,,,,,,95.00,95.00,31.67,31.67,A,A,F,F
+"Han, Weifeng",6161417,hanwe,FA21-BL-CSCI-P423-18429,10.00,10.00,,,100.00,100.00,33.33,33.33,,,,,,,,,,,,,100.00,100.00,33.33,33.33,A+,A+,F,F
+"Hertz, Arthur",6092144,arthertz,FA21-BL-CSCI-P423-18429,10.00,10.00,,,100.00,100.00,33.33,33.33,,,,,,,,,,,,,100.00,100.00,33.33,33.33,A+,A+,F,F
+"Irmscher, Nick",6168653,niirms,FA21-BL-CSCI-P423-18429,10.00,9.00,,,95.00,95.00,31.67,31.67,,,,,,,,,,,,,95.00,95.00,31.67,31.67,A,A,F,F
+"Iyer, Vijay",6456685,vsiyer,FA21-BL-CSCI-P523-18430,7.00,9.00,,,80.00,80.00,26.67,26.67,,,,,,,,,,,,,80.00,80.00,26.67,26.67,B-,B-,F,F
+"Labuzienski, Louis",6247400,llabuzie,FA21-BL-CSCI-P423-18429,10.00,10.00,,,100.00,100.00,33.33,33.33,,,,,,,,,,,,,100.00,100.00,33.33,33.33,A+,A+,F,F
+"Sabharwal, Kartik",6575110,ksabharw,FA21-BL-CSCI-P523-18430,10.00,10.00,,,100.00,100.00,33.33,33.33,,,,,,,,,,,,,100.00,100.00,33.33,33.33,A+,A+,F,F
+"Shah, Mohan",6379683,ms115,FA21-BL-ENGR-E513-21361,10.00,10.00,,,100.00,100.00,33.33,33.33,,,,,,,,,,,,,100.00,100.00,33.33,33.33,A+,A+,F,F
+"Shetty, Darshal",6511654,dcshetty,FA21-BL-CSCI-P523-18430,10.00,10.00,,,100.00,100.00,33.33,33.33,,,,,,,,,,,,,100.00,100.00,33.33,33.33,A+,A+,F,F
+"Wheeler, Sandy",6188986,sandwhee,FA21-BL-CSCI-P423-18429,10.00,10.00,,,100.00,100.00,33.33,33.33,,,,,,,,,,,,,100.00,100.00,33.33,33.33,A+,A+,F,F
+"Yang, Taylor",6230151,tayyang,FA21-BL-CSCI-P423-18429,10.00,10.00,,,100.00,100.00,33.33,33.33,,,,,,,,,,,,,100.00,100.00,33.33,33.33,A+,A+,F,F
+"Zhu, Zhe",6455571,zhezhu,FA21-BL-ENGR-E513-21361,0.00,0.00,,,0.00,0.00,0.00,0.00,,,,,,,,,,,,,0.00,0.00,0.00,0.00,F,F,F,F
+"Student, Test",6612485,d43dc7b14c6d9697c454084789fe66e15715e45f,"FA21-BL-CSCI-P423-18429, FA21-BL-CSCI-P523-18430, FA21-BL-ENGR-E313-20345, and FA21-BL-ENGR-E513-21361",,0.00,,,0.00,0.00,0.00,0.00,,,,,,,,,,,,,0.00,0.00,0.00,0.00,F,F,F,F

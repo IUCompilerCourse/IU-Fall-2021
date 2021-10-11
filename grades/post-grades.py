@@ -2,10 +2,10 @@
 import csv
 import sys
 
-assignment = "RegisterAllocation"
+assignment = "Conditionals"
 autograder_java_file = assignment + '.csv'
 autograder_python_file = assignment + 'Python.csv'
-gradebook_file = '2021-09-21.csv'
+gradebook_file = '2021-10-11.csv'
 
 def column_of(name, row):
     index = 0
