@@ -148,7 +148,7 @@ Oct. 4  |                                      |                               |
 Oct. 5 | [More Dataflow Analysis](./lectures/Oct-5.md) | |
 Oct. 7 | Code Review: Conditionals
 Oct. 12 | [Loops: RCO, Explicate, Remove Jumps](./lectures/Oct-12.md)
-Oct. 14 | Tuples and Garbage Collection
+Oct. 14 | [Tuples and Garbage Collection](./lectures/Oct-14.md)
 Oct. 18 |                                      |                               |  [Loops and Dataflow Analysis](), submit in [Racket](https://autograder.sice.indiana.edu/web/project/335) or [Python](https://autograder.sice.indiana.edu/web/project/336)
 Oct. 19 | Review for Midterm
 Oct. 21 | **Midterm Exam**
