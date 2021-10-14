@@ -171,20 +171,32 @@ constructed vectors during collect!
 
 New forms in the output language:
 
-        exp ::= 
-           (Collect int)       call the GC and you're going to need `int` bytes
+        exp ::= ...
+         | (Collect int)       call the GC and you're going to need `int` bytes
          | (Allocate int type) allocate `int` many bytes, `type` is the type of the tuple
          | (GlobalValue name)  access global variables e.g. free_ptr, fromspace_end
 
 * `free_ptr`: the next empty spot in the FromSpace
 * `fromspace_end`: the end of the FromSpace
 
+For Python, we need a way to intialize the tuple elements.
+
+1. We introduce a `Begin` expression that contains a list of statements
+   and a result expression, and
+2. Allow `Subscript` on the left-hand side of an assignment
+
+Grammar:
+
+    exp ::= ... | (Begin stmt ... exp)
+
+    lhs ::= Name(var) | Subscript(exp, exp)
+    stmt ::= ... | Assign(lhs, exp)
+
+
 ### remove-complex-opera*
   
-The new forms Collect, Allocate, GlobalValue should be treated
-as complex operands.
-
-
+The new forms Collect, Allocate, GlobalValue should be treated as
+complex operands.
 
 ### explicate-control
   
