@@ -80,7 +80,7 @@ won't fail the class because your internet went out.
 * Assignments (30%)
 * Quizzes (10%)
 * Midterm Exam (October 21, in class) (25%)
-* Final Exam (Week of December 12) (35%)
+* Final Exam (December 14, 12:35-2:35 PM, in class) (35%)
 
 **Assignments:**
 
