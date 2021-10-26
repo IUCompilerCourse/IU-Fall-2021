@@ -152,6 +152,8 @@ Oct. 14 | [Tuples and Garbage Collection](./lectures/Oct-14.md)
 Oct. 18 |                                      |                               |  [Loops and Dataflow Analysis](), submit in [Racket](https://autograder.sice.indiana.edu/web/project/335) or [Python](https://autograder.sice.indiana.edu/web/project/336)
 Oct. 19 | Review for Midterm
 Oct. 21 | **Midterm Exam**
+Oct. 26 | [Tuples and GC, cont'd](./lectures/Oct-26.md)
+Oct. 28 |
 
 
 **Resources:**
