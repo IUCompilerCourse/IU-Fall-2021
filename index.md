@@ -154,7 +154,7 @@ Oct. 19 | Review for Midterm
 Oct. 21 | **Midterm Exam**
 Oct. 26 | [Tuples and GC, cont'd](./lectures/Oct-26.md)
 Oct. 28 |
-Nov. 1  |                                      |                               |  Tuples and Garbage Collection, submit in Racket or Python
+Nov. 8  |                                      |                               |  Tuples and Garbage Collection, submit in Racket or Python
 
 
 **Resources:**
