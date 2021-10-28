@@ -108,7 +108,7 @@ atomic.
   
 straightforward additions to handle the new forms
     
-### select-instructions (5.3.3)
+### select-instructions
   
 Here is where we implement the new operations needed for tuples.
 
