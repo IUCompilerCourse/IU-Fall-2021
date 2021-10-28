@@ -117,4 +117,127 @@ example: block9056
 
 ## Example
 
+Source program:
 
+    (vector-ref (vector 42) 0)
+
+expose allocation:
+
+	(vector-ref T 0)
+
+
+where `T` is
+
+    (let ([_ (if (< (+ (global-value free_ptr) 16) 
+                    (global-value fromspace_end))
+                 (void)
+                 (collect 16))])
+       (let ([alloc46145 (allocate 1 (Vector Integer))])
+          (let ([_46146 (vector-set! alloc46145 0 42)])
+             alloc46145)))
+
+remove complex operands:
+
+    (let ([_ (if (let ([tmp46148 (global-value free_ptr)])
+                         (let ([tmp46149 (+ tmp46148 16)])
+                            (let ([tmp46150 (global-value fromspace_end)])
+                               (< tmp46149 tmp46150))))
+                     (void)
+                     (collect 16))])
+       (let ([alloc46145 (allocate 1 (Vector Integer))])
+          (let ([_46146 (vector-set! alloc46145 0 42)])
+             (vector-ref alloc46145 0))))
+
+explicate control:
+
+	start:
+		tmp46148 = (global-value free_ptr);
+		tmp46149 = (+ tmp46148 16);
+		tmp46150 = (global-value fromspace_end);
+		if (< tmp46149 tmp46150)
+		   goto block46152;
+		else
+		   goto block46153;
+	block46152:
+		_ = (void);
+		goto block46151;
+	block46153:
+		(collect 16)
+		goto block46151;
+	block46151:
+		alloc46145 = (allocate 1 (Vector Integer));
+		_46146 = (vector-set! alloc46145 0 42);
+		return (vector-ref alloc46145 0);
+
+select instructions:
+
+	start:
+		movq free_ptr(%rip), tmp46148
+		movq tmp46148, tmp46149
+		addq $16, tmp46149
+		movq fromspace_end(%rip), tmp46150
+		cmpq tmp46150, tmp46149
+		jl block46152
+		jmp block46153
+	block46152:
+		movq $0, _46147
+		jmp block46151
+	block46153:
+		movq %r15, %rdi
+		movq $16, %rsi
+		callq collect
+		jmp block46151
+	block46151:
+		movq free_ptr(%rip), %r11
+		addq $16, free_ptr(%rip)
+		movq $3, 0(%r11)
+		movq %r11, alloc46145
+		movq alloc46145, %r11
+		movq $42, 8(%r11)
+		movq $0, _46146
+		movq alloc46145, %r11
+		movq 8(%r11), %rax
+		jmp conclusion
+
+prelude and conclusion:
+
+	main:
+		pushq %rbp
+		movq %rsp, %rbp
+		subq $0, %rsp
+		movq $65536, %rdi
+		movq $65536, %rsi
+		callq initialize
+		movq rootstack_begin(%rip), %r15
+		jmp start
+	start:
+		movq free_ptr(%rip), %rcx
+		addq $16, %rcx
+		movq fromspace_end(%rip), %rdx
+		cmpq %rdx, %rcx
+		jl block46185
+		jmp block46186
+	block46185:
+		movq $0, %rcx
+		jmp block46184
+	block46186:
+		movq %r15, %rdi
+		movq $16, %rsi
+		callq collect
+		jmp block46184
+	block46184:
+		movq free_ptr(%rip), %r11
+		addq $16, free_ptr(%rip)
+		movq $3, 0(%r11)
+		movq %r11, %rcx
+		movq %rcx, %r11
+		movq $42, 8(%r11)
+		movq $0, %rdx
+		movq %rcx, %r11
+		movq 8(%r11), %rax
+		jmp conclusion
+	conclusion:
+		subq $0, %r15
+		addq $0, %rsp
+		popq %rbp
+		retq
