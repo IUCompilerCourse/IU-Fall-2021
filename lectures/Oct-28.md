@@ -64,9 +64,9 @@ example: block9056
 
    So
 
-        lhs = (allocate len (Vector type ...));
+        lhs = (Allocate len (Vector type ...));
 		
-        lhs = allocate(len, TupleType([type, ...]))
+        lhs = Allocate(len, TupleType([type, ...]))
 
     becomes
     
@@ -80,9 +80,9 @@ example: block9056
     Pass the top of the root stack (`r15`) in register `rdi` and 
     the number of bytes in `rsi`.
 
-        (collect bytes)
+        (Collect bytes)
 		
-        collect(bytes)
+        Collect(bytes)
         
     becomes
     
@@ -121,6 +121,8 @@ Source program:
 
     (vector-ref (vector 42) 0)
 
+    print( (42,)[0] )
+
 expose allocation:
 
 	(vector-ref T 0)
@@ -132,29 +134,29 @@ where `T` is
                     (global-value fromspace_end))
                  (void)
                  (collect 16))])
-       (let ([alloc46145 (allocate 1 (Vector Integer))])
-          (let ([_46146 (vector-set! alloc46145 0 42)])
-             alloc46145)))
+       (let ([alloc5 (allocate 1 (Vector Integer))])
+          (let ([_6 (vector-set! alloc5 0 42)])
+             alloc5)))
 
 remove complex operands:
 
-    (let ([_ (if (let ([tmp46148 (global-value free_ptr)])
-                         (let ([tmp46149 (+ tmp46148 16)])
+    (let ([_ (if (let ([tmp8 (global-value free_ptr)])
+                         (let ([tmp9 (+ tmp8 16)])
                             (let ([tmp46150 (global-value fromspace_end)])
-                               (< tmp46149 tmp46150))))
+                               (< tmp9 tmp46150))))
                      (void)
                      (collect 16))])
-       (let ([alloc46145 (allocate 1 (Vector Integer))])
-          (let ([_46146 (vector-set! alloc46145 0 42)])
-             (vector-ref alloc46145 0))))
+       (let ([alloc5 (allocate 1 (Vector Integer))])
+          (let ([_6 (vector-set! alloc5 0 42)])
+             (vector-ref alloc5 0))))
 
 explicate control:
 
 	start:
-		tmp46148 = (global-value free_ptr);
-		tmp46149 = (+ tmp46148 16);
+		tmp8 = (global-value free_ptr);
+		tmp9 = (+ tmp8 16);
 		tmp46150 = (global-value fromspace_end);
-		if (< tmp46149 tmp46150)
+		if (< tmp9 tmp46150)
 		   goto block46152;
 		else
 		   goto block46153;
@@ -165,22 +167,22 @@ explicate control:
 		(collect 16)
 		goto block46151;
 	block46151:
-		alloc46145 = (allocate 1 (Vector Integer));
-		_46146 = (vector-set! alloc46145 0 42);
-		return (vector-ref alloc46145 0);
+		alloc5 = (allocate 1 (Vector Integer));
+		_6 = (vector-set! alloc5 0 42);
+		return (vector-ref alloc5 0);
 
 select instructions:
 
 	start:
-		movq free_ptr(%rip), tmp46148
-		movq tmp46148, tmp46149
-		addq $16, tmp46149
+		movq free_ptr(%rip), tmp8
+		movq tmp8, tmp9
+		addq $16, tmp9
 		movq fromspace_end(%rip), tmp46150
-		cmpq tmp46150, tmp46149
+		cmpq tmp46150, tmp9
 		jl block46152
 		jmp block46153
 	block46152:
-		movq $0, _46147
+		movq $0, _7
 		jmp block46151
 	block46153:
 		movq %r15, %rdi
@@ -191,11 +193,11 @@ select instructions:
 		movq free_ptr(%rip), %r11
 		addq $16, free_ptr(%rip)
 		movq $3, 0(%r11)
-		movq %r11, alloc46145
-		movq alloc46145, %r11
+		movq %r11, alloc5
+		movq alloc5, %r11
 		movq $42, 8(%r11)
-		movq $0, _46146
-		movq alloc46145, %r11
+		movq $0, _6
+		movq alloc5, %r11
 		movq 8(%r11), %rax
 		jmp conclusion
 

@@ -155,6 +155,7 @@ Oct. 21 | **Midterm Exam**
 Oct. 26 | [Tuples and GC, cont'd](./lectures/Oct-26.md)
 Oct. 28 | [Tuples and GC, cont'd](./lectures/Oct-28.md)
 Nov. 2  | [Compiling Functions to x86](./lectures/Nov-2.md)
+Nov. 4  | [Compiling Functions, cont'd](./lectures/Nov-4.md)
 Nov. 8  |                                      |                               |  [Tuples and Garbage Collection](https://iu.instructure.com/courses/1996310/assignments/12803441), submit in [Racket](https://autograder.sice.indiana.edu/web/project/343) or [Python](https://autograder.sice.indiana.edu/web/project/344)
 
 
