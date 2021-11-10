@@ -233,8 +233,9 @@ Arguments of `Apply` need to be atomic expressions.
 ## Explicate Control
 
 * assignment
-* tail
 * predicate
+* statement (python)
+* tail (new for python)
 
 Add cases for `FunRef` and `Apply` to the three helper functions
 for assignment, tail, and predicate contexts.
@@ -259,14 +260,6 @@ Previous assignment:
          ))
 
 adapt the above to process every function definition.
-
-
-## Uncover Locals
-
-Add a case for `TailCall` to the helper for tail contexts.
-
-Create a new helper function for function definitions.
-Again, it will be similar to the previous code for `Program`.
 
 
 ## Select Instructions
@@ -304,9 +297,9 @@ instruction we'll call `TailJmp`.
 
 ### Function Definitions
 
-    (Def f ([x1 : T1] ... [xn : Tn]) rt info CFG)
-       1. CFG => CFG'
-       2. prepend to start block from CFG'
+    (Def f ([x1 : T1] ... [xn : Tn]) rt info blocks)
+       1. blocks => blocks'
+       2. prepend to start block from blocks'
            movq rdi x1
            ...
        4. parameters get added to the list of local variables
