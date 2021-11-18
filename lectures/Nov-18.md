@@ -1,3 +1,60 @@
+# Closure Conversion Pass (after reveal-functions)
+
+1. Translate each lambda into a "flat closure"
+
+    Let `fv1, fv2, ...` be the free variables of the lambda.
+
+    Racket
+
+		(lambda: (ps ...) : rt body)
+		==>
+		(vector (function-ref lambda_name) fv1 fv2 ...)
+
+    Python
+
+        lambda ps... : body
+		==>
+		(lambda_name, fv1, fv2, ...)
+
+2. Generate a top-level function for each lambda
+
+    Let `FT1, FT2, ...` be the types of the free variables
+    and the `has_type` of the lambda is `FunctionType([PT1, ...], RT)`.
+
+    Racket
+	
+		(define (lambda_name [clos : _] ps ...) -> rt
+		  (let ([fv1 (vector-ref clos 1)])
+			(let ([fv2 (vector-ref clos 2)])
+			  ...
+			  body')))
+
+    Python
+
+        def lambda_name(clos : TupleType([_, FT1, FT2, ...]), p1 : PT1, ...) -> RT: 
+            fv1 = clos[1]
+			fv2 = clos[2]
+			...
+			return body'
+
+3. Translate every function application into an application of a closure:
+
+    Racket
+
+		(e es ...)
+		==>
+		(let ([tmp e'])
+		  ((vector-ref tmp 0) tmp es' ...))
+
+    Python
+
+        e0(e1, ..., en)
+		==>
+		let tmp = e0' in tmp[0](tmp, e1', ..., en')
+		
+
+
+
 # Basic Example of Closure Conversion
 
 ## source program

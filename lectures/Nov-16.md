@@ -66,21 +66,21 @@ Figure 7.2 in book, diagram of g and h from above example.
 
 # Closure Conversion Pass (after reveal-functions)
 
-For lambda:
+1. Translate each lambda into a "flat closure"
 
     (lambda: (ps ...) : rt body)
     ==>
     (vector (function-ref name) fvs ...)
 
-and also generate a top-level function
+2. Generate a top-level function for each lambda
 
-    (define (name [clos : _] ps ...)
+    (define (lambda_i [clos : _] ps ...)
       (let ([fv_1 (vector-ref clos 1)])
         (let ([fv_2 (vector-ref clos 2)])
           ...
           body')))
         
-For application:
+3. Translate every function application into an application of a closure:
 
     (e es ...)
     ==>
