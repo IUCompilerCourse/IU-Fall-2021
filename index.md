@@ -162,6 +162,8 @@ Nov. 11 | [Examples: Tail Calls, Many Parameters](./lectures/Nov-11.md)
 Nov. 16 | [Compiling Lambda](./lectures/Nov-16.md)
 Nov. 18 | [Examples of Closure Conversion](./lectures/Nov-18.md)
 Nov. 29 |                                      |                               |  [Functions](https://iu.instructure.com/courses/1996310/assignments/12844466), submit in [Racket](https://autograder.sice.indiana.edu/web/project/349) or [Python](https://autograder.sice.indiana.edu/web/project/350)
+Nov. 30 | Code Review: Functions
+Dec. 2 | Dynamic Typing
 
 **Resources:**
 
