@@ -163,7 +163,7 @@ Nov. 16 | [Compiling Lambda](./lectures/Nov-16.md)
 Nov. 18 | [Examples of Closure Conversion](./lectures/Nov-18.md)
 Nov. 29 |                                      |                               |  [Functions](https://iu.instructure.com/courses/1996310/assignments/12844466), submit in [Racket](https://autograder.sice.indiana.edu/web/project/349) or [Python](https://autograder.sice.indiana.edu/web/project/350)
 Nov. 30 | Code Review: Functions
-Dec. 2 | Dynamic Typing
+Dec. 2 | [Dynamic Typing](./lectures/Dec-2.md)
 Dec. 14 | **Final Exam** 12:35-2:35 p.m. in class
 
 
