@@ -77,8 +77,7 @@ the Canvas panel on the right-hand side of this web page.  Grading
 will take into account any technology problems that arrise, i.e., you
 won't fail the class because your internet went out.
 
-* Assignments (30%)
-* Quizzes (10%)
+* Assignments (40%)
 * Midterm Exam (October 21, in class) (25%)
 * Final Exam (December 14, 12:35-2:35 PM, in class) (35%)
 
