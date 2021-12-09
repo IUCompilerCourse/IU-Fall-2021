@@ -164,6 +164,7 @@ Nov. 29 |                                      |                               |
 Nov. 30 | Code Review: Functions
 Dec. 2 | [Dynamic Typing](./lectures/Dec-2.md)
 Dec. 7 | [Dynamic Typing, continued](./lectures/Dec-7.md)
+Dec. 9 | [Review for Final Exam](./lectures/Dec-9.md)
 Dec. 14 | **Final Exam** 12:35-2:35 p.m. in class
 
 

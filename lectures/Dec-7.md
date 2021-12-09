@@ -1,160 +1,5 @@
 # Lecture: Dynamic Typing Continued
 
-## Instruction Selection
-
-* `(Prim 'make-any (list e (Int tag)))`
-
-  For tag of an Integer or Boolean, shift 
-  
-
-        (Assign lhs (Prim 'make-any (list e (Int tag)))
-        ===>
-        movq e', lhs'
-        salq $3, lhs'
-        orq tag, lhs'
-
-  where `3` is the length of the tag.
-
-  For other types (vectors and functions):
-
-        (Assign lhs (Prim 'make-any (list e (Int tag))))
-        ===>
-        movq e', lhs'
-        orq tag, lhs'
-
-* `(Prim 'tag-of-any (list e))`
-
-        (Assign lhs (Prim 'tag-of-any (list e)))
-        ===>
-        movq e', lhs
-        andq $7, lhs
-
-  where `7` is the binary number `111`.
-
-* `(ValueOf e ty)`
-
-  If `ty` is an Integer, Boolean, Void:
-
-        (Assign lhs (ValueOf e ty))
-        ==>
-        movq e', lhs'
-        sarq $3, lhs
-
-  where `3` is the length of the tag.
-  
-  If `ty` is a vector or procedure (a pointer):
-
-        (Assign lhs (ValueOf e ty))
-        ==>
-        movq $-8, lhs
-        andq e', lhs
-
-  where -8 is `(bitwise-not (string->number "#b111"))`
-
-
-## Compiling Lany, Instruction Selection, continued
-
-* `(Exit)`
-
-        (Assign lhs (Exit))
-        ===>
-        movq $-1, %rdi
-        callq exit
-
-* `(Assign lhs (AllocateClosure len ty arity))`
-
-  Treat this just like `Allocate` except that you'll put
-  the `arity` into the tag at the front of the vector.
-  Use bits 57 and higher for the arity.
-
-        [(Assign lhs (AllocateClosure len `(Vector ,ts ...) arity))
-         (define lhs^ (select-instr-arg lhs))
-         ;; Add one quad word for the meta info tag
-         (define size (* (add1 len) 8))
-         ;;highest 7 bits are unused
-         ;;lowest 1 bit is 1 saying this is not a forwarding pointer
-         (define is-not-forward-tag 1)
-         ;;next 6 lowest bits are the length
-         (define length-tag (arithmetic-shift len 1))
-         ;;bits [6,56] are a bitmask indicating if [0,50] are pointers
-         (define ptr-tag
-           (for/fold ([tag 0]) ([t (in-list ts)] [i (in-naturals 7)])
-             (bitwise-ior tag (arithmetic-shift (b2i (root-type? t)) i))))
-         (define arity-tag ...)
-         ;; Combine the tags into a single quad word
-         (define tag (bitwise-ior arity-tag ptr-tag length-tag is-not-forward-tag))
-         (list (Instr 'movq (list (Global 'free_ptr) (Reg tmp-reg)))
-               (Instr 'addq (list (Imm size) (Global 'free_ptr)))
-               (Instr 'movq (list (Imm tag) (Deref tmp-reg 0)))
-               (Instr 'movq (list (Reg tmp-reg) lhs^))
-               )
-         ]
-
-* `(Assign lhs (Prim 'procedure-arity (list e)))`
-
-  Extract the arity from the tag of the vector.
-  
-        (Assign lhs (Prim 'procedure-arity (list e)))
-        ===>
-        movq e', %r11
-        movq 0(%r11), %r11
-        sarq $57, %r11
-        movq %r11, lhs'
-
-* `(Assign lhs (Prim 'vector-length (list e)))`
-
-  Extract the length from the tag of the vector.
-
-        (Assign lhs (Prim 'vector-length (list e)))
-        ===>
-        movq e', %r11
-        movq 0(%r11), %r11
-        andq $126, %r11           // 1111110
-        sarq $1, %r11
-        movq %r11, lhs'
-
-
-## `Vectorof`, `vector-ref`, and `vector-set!`
-
-The type checker for Lany treats vector operations differently
-if the vector is of type `(Vectorof T)`. 
-The index can be an arbitrary expression, e.g.
-suppose `vec` has type `(Vectorof T)`. Then
-the index could be `(read)`
-
-	;; vec1 : (Vector Any Any)
-	(let ([vec1 (vector (inject 1 Integer) (inject 2 Integer))])
-	  (let ([vec2 (inject vec1 (Vector Any Any))]) ;; vec2 : Any
-		(let ([vec3 (project vec2 (Vectorof Any))]) ;; vec3 : (Vectorof Any)
-		  (vector-ref vec3 (read)))))
-
-and the type of `(vector-ref vec (read))` is `T`.
-
-Recall instruction selection for `vector-ref`:
-
-    (Assign lhs (Prim 'vector-ref (list evec (Int n))))
-    ===>
-    movq evec', %r11
-    movq offset(%r11), lhs'
-
-    where offset is 8(n+1)
-
-If the index is not of the form `(Int i)`, but an arbitrary
-expression, then instead of computing the offset `8(n+1)` at compile
-time, you can generate the following instructions. Note the use of the
-new instruction `imulq`.
-
-    (Assign lhs (Prim 'vector-ref (list evec en)))
-    ===>
-    movq en', %r11
-    addq $1, %r11
-    imulq $8, %r11
-    addq evec', %r11
-    movq 0(%r11) lhs'
-
-The same idea applies to `vector-set!`.
-
-
 # The Ldyn Language: Mini Racket (Dynamically Typed)
 
     exp ::= int | (read) | ... | (lambda (var ...) exp)
@@ -264,5 +109,155 @@ actually see:
     (Vectorof Any)
 
 
+
+## Instruction Selection
+
+* `(Prim 'make-any (list e (Int tag)))`
+
+  For tag of an Integer or Boolean
+
+        (Assign lhs (Prim 'make-any (list e (Int tag)))
+        ===>
+        movq e', lhs'
+        salq $3, lhs'
+        orq tag, lhs'
+
+  where `3` is the length of the tag.
+
+  For other types (vectors and functions):
+
+        (Assign lhs (Prim 'make-any (list e (Int tag))))
+        ===>
+        movq e', lhs'
+        orq tag, lhs'
+
+* `(Prim 'tag-of-any (list e))`
+
+        (Assign lhs (Prim 'tag-of-any (list e)))
+        ===>
+        movq e', lhs
+        andq $7, lhs
+
+  where `7` is the binary number `111`.
+
+* `(ValueOf e ty)`
+
+  If `ty` is an Integer, Boolean, Void:
+
+        (Assign lhs (ValueOf e ty))
+        ==>
+        movq e', lhs'
+        sarq $3, lhs
+
+  where `3` is the length of the tag.
+  
+  If `ty` is a vector or procedure (a pointer):
+
+        (Assign lhs (ValueOf e ty))
+        ==>
+        movq $-8, lhs
+        andq e', lhs
+
+  where -8 is `(bitwise-not (string->number "#b111"))`
+
+* `(Exit)`
+
+        (Assign lhs (Exit))
+        ===>
+        movq $-1, %rdi
+        callq exit
+
+* `(Assign lhs (AllocateClosure len ty arity))`
+
+  Treat this just like `Allocate` except that you'll put
+  the `arity` into the tag at the front of the vector.
+  Use bits 57 and higher for the arity.
+
+        [(Assign lhs (AllocateClosure len `(Vector ,ts ...) arity))
+         (define lhs^ (select-instr-arg lhs))
+         ;; Add one quad word for the meta info tag
+         (define size (* (add1 len) 8))
+         ;;highest 7 bits are unused
+         ;;lowest 1 bit is 1 saying this is not a forwarding pointer
+         (define is-not-forward-tag 1)
+         ;;next 6 lowest bits are the length
+         (define length-tag (arithmetic-shift len 1))
+         ;;bits [6,56] are a bitmask indicating if [0,50] are pointers
+         (define ptr-tag
+           (for/fold ([tag 0]) ([t (in-list ts)] [i (in-naturals 7)])
+             (bitwise-ior tag (arithmetic-shift (b2i (root-type? t)) i))))
+         (define arity-tag ...)
+         ;; Combine the tags into a single quad word
+         (define tag (bitwise-ior arity-tag ptr-tag length-tag is-not-forward-tag))
+         (list (Instr 'movq (list (Global 'free_ptr) (Reg tmp-reg)))
+               (Instr 'addq (list (Imm size) (Global 'free_ptr)))
+               (Instr 'movq (list (Imm tag) (Deref tmp-reg 0)))
+               (Instr 'movq (list (Reg tmp-reg) lhs^))
+               )
+         ]
+
+* `(Assign lhs (Prim 'procedure-arity (list e)))`
+
+  Extract the arity from the tag of the vector.
+  
+        (Assign lhs (Prim 'procedure-arity (list e)))
+        ===>
+        movq e', %r11
+        movq 0(%r11), %r11
+        sarq $57, %r11
+        movq %r11, lhs'
+
+* `(Assign lhs (Prim 'vector-length (list e)))`
+
+  Extract the length from the tag of the vector.
+
+        (Assign lhs (Prim 'vector-length (list e)))
+        ===>
+        movq e', %r11
+        movq 0(%r11), %r11
+        andq $126, %r11           // 1111110
+        sarq $1, %r11
+        movq %r11, lhs'
+
+
+## `Vectorof`, `vector-ref`, and `vector-set!`
+
+The type checker for Lany treats vector operations differently
+if the vector is of type `(Vectorof T)`. 
+The index can be an arbitrary expression, e.g.
+suppose `vec` has type `(Vectorof T)`. Then
+the index could be `(read)`
+
+	;; vec1 : (Vector Any Any)
+	(let ([vec1 (vector (inject 1 Integer) (inject 2 Integer))])
+	  (let ([vec2 (inject vec1 (Vector Any Any))]) ;; vec2 : Any
+		(let ([vec3 (project vec2 (Vectorof Any))]) ;; vec3 : (Vectorof Any)
+		  (vector-ref vec3 (read)))))
+
+and the type of `(vector-ref vec (read))` is `T`.
+
+Recall instruction selection for `vector-ref`:
+
+    (Assign lhs (Prim 'vector-ref (list evec (Int n))))
+    ===>
+    movq evec', %r11
+    movq offset(%r11), lhs'
+
+    where offset is 8(n+1)
+
+If the index is not of the form `(Int i)`, but an arbitrary
+expression, then instead of computing the offset `8(n+1)` at compile
+time, you can generate the following instructions. Note the use of the
+new instruction `imulq`.
+
+    (Assign lhs (Prim 'vector-ref (list evec en)))
+    ===>
+    movq en', %r11
+    addq $1, %r11
+    imulq $8, %r11
+    addq evec', %r11
+    movq 0(%r11) lhs'
+
+The same idea applies to `vector-set!`.
 
 
