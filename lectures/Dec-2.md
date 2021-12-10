@@ -27,7 +27,7 @@ We'll implement the compiler for Ldyn in two stages.
 
 
 
-## The Lany Language: Any
+## The Lany Language
 
     type ::= ... | Any
     ftype ::= Integer | Boolean | (Vector Any ...) | (Vectorof Any)
