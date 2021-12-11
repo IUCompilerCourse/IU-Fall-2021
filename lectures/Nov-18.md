@@ -8,7 +8,7 @@
 
 		(lambda: (ps ...) : rt body)
 		==>
-		(vector (function-ref lambda_name) fv1 fv2 ...)
+		(vector lambda_name fv1 fv2 ...)
 
     Python
 
@@ -31,7 +31,7 @@
 
     Python
 
-        def lambda_name(clos : TupleType([_, FT1, FT2, ...]), p1 : PT1, ...) -> RT: 
+        def lambda_name(clos : TupleType([_,FT1,FT2,...]), p1:PT1, ...) -> RT: 
             fv1 = clos[1]
 			fv2 = clos[2]
 			...
@@ -59,7 +59,7 @@
 
 ## source program
 
-    def f(x:int)-> Callable[(<ast.List object at 0x1080c61d0>,int,)] :
+    def f(x:int)-> Callable[[int],int] :
       y = 4
       return (lambda z: x + y + z)
     g = f(5)
