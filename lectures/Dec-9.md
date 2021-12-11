@@ -313,19 +313,19 @@
 	uncover live:
 	_block.174:
 
-			{%rsp, init.157, init.156}
+			{ %rsp, init.157, init.156}
 	  movq _free_ptr(%rip), %r11
 
-			{%rsp, init.157, init.156}
+			{ %rsp, init.157, init.156}
 	  addq $24, _free_ptr(%rip)
 
-			{%rsp, init.157, init.156}
+			{ %rsp, init.157, init.156}
 	  movq $5, 0(%r11)
 
-			{%rsp, init.157, init.156}
+			{ %rsp, init.157, init.156}
 	  movq %r11, alloc.155
 
-			{%r11, %rsp, init.157, init.156}
+			{ %r11, %rsp, init.157, init.156}
 	  movq alloc.155, %r11
 
 			{init.157, alloc.155, %rsp, init.156}
@@ -343,76 +343,76 @@
 			{alloc.155, %rsp}
 	  jmp _mapconclusion
 
-			{%rsp, %rax}
+			{ %rsp, %rax}
 	_block.175:
 
-			{%rsp, init.157, init.156}
+			{ %rsp, init.157, init.156}
 	  jmp _block.174
 
-			{%rsp, init.157, init.156}
+			{ %rsp, init.157, init.156}
 	_block.176:
 
-			{%rsp, init.157, init.156, %r15}
+			{ %rsp, init.157, init.156, %r15}
 	  movq %r15, %rdi
 
-			{%rsp, init.157, init.156, %r15}
+			{ %rsp, init.157, init.156, %r15}
 	  movq $24, %rsi
 
-			{%rsp, init.157, %rdi, init.156}
+			{ %rsp, init.157, %rdi, init.156}
 	  callq _collect
 
 			{init.157, %rsp, %rsi, %rdi, init.156}
 	  jmp _block.174
 
-			{%rsp, init.157, init.156}
+			{ %rsp, init.157, init.156}
 	_mapstart:
 
-			{%rdi, %rsp, %rsi, %rax, %r15}
+			{ %rdi, %rsp, %rsi, %rax, %r15}
 	  movq %rdi, f
 
-			{%rdi, %rsp, %rsi, %rax, %r15}
+			{ %rdi, %rsp, %rsi, %rax, %r15}
 	  movq %rsi, v
 
-			{%rsp, %rsi, %rax, %r15, f}
+			{ %rsp, %rsi, %rax, %r15, f}
 	  movq v, %r11
 
-			{%rax, %rsp, v, %r15, f}
+			{ %rax, %rsp, v, %r15, f}
 	  movq 8(%r11), %r11
 
-			{%rax, %r11, %rsp, v, %r15, f}
+			{ %rax, %r11, %rsp, v, %r15, f}
 	  movq %r11, tmp.161
 
-			{%rax, %r11, %rsp, v, %r15, f}
+			{ %rax, %r11, %rsp, v, %r15, f}
 	  movq tmp.161, %rdi
 
-			{%rax, tmp.161, %rsp, v, %r15, f}
+			{ %rax, tmp.161, %rsp, v, %r15, f}
 	  callq *f
 
-			{%rax, %rdi, %rsp, v, %r15, f}
+			{ %rax, %rdi, %rsp, v, %r15, f}
 	  movq %rax, init.156
 
-			{%rax, %rsp, v, %r15, f}
+			{ %rax, %rsp, v, %r15, f}
 	  movq v, %r11
 
 			{init.156, %rsp, v, %rax, %r15, f}
 	  movq 16(%r11), %r11
 
-			{%r11, init.156, %rsp, %rax, %r15, f}
+			{ %r11, init.156, %rsp, %rax, %r15, f}
 	  movq %r11, tmp.162
 
-			{%r11, init.156, %rsp, %rax, %r15, f}
+			{ %r11, init.156, %rsp, %rax, %r15, f}
 	  movq tmp.162, %rdi
 
 			{tmp.162, init.156, %rsp, %rax, %r15, f}
 	  callq *f
 
-			{%rdi, %rsp, f, %rax, %r15, init.156}
+			{ %rdi, %rsp, f, %rax, %r15, init.156}
 	  movq %rax, init.157
 
-			{%rsp, %rax, %r15, init.156}
+			{ %rsp, %rax, %r15, init.156}
 	  movq _free_ptr(%rip), tmp.163
 
-			{%rsp, init.157, %r15, init.156}
+			{ %rsp, init.157, %r15, init.156}
 	  movq tmp.163, tmp.164
 
 			{init.157, %rsp, tmp.163, %r15, init.156}
@@ -427,10 +427,10 @@
 			{init.157, tmp.164, %rsp, tmp.165, %r15, init.156}
 	  jl _block.175
 
-			{%rsp, init.157, %r15, init.156}
+			{ %rsp, init.157, %r15, init.156}
 	  jmp _block.176
 
-			{%rsp, init.157, %r15, init.156}
+			{ %rsp, init.157, %r15, init.156}
 	var_types:
 	{'map': FunctionType(param_types=[FunctionType(param_types=[IntType()], ret_type=IntType()), TupleType(types=[IntType(), IntType()])], ret_type=TupleType(types=[IntType(), IntType()])), 'inc': FunctionType(param_types=[IntType()], ret_type=IntType()), 'main': FunctionType(param_types=[], ret_type=IntType()), 'f': FunctionType(param_types=[IntType()], ret_type=IntType()), 'v': TupleType(types=[IntType(), IntType()]), 'alloc.155': TupleType(types=[IntType(), IntType()]), 'tmp.161': IntType(), 'init.156': IntType(), 'tmp.162': IntType(), 'init.157': IntType(), 'tmp.163': IntType(), 'tmp.164': IntType(), 'tmp.165': IntType()}
 	home:
@@ -438,19 +438,19 @@
 	uncover live:
 	_incstart:
 
-			{%rsp, %rdi}
+			{ %rsp, %rdi}
 	  movq %rdi, x
 
-			{%rsp, %rdi}
+			{ %rsp, %rdi}
 	  movq x, %rax
 
-			{%rsp, x}
+			{ %rsp, x}
 	  addq $1, %rax
 
-			{%rsp, %rax}
+			{ %rsp, %rax}
 	  jmp _incconclusion
 
-			{%rsp, %rax}
+			{ %rsp, %rax}
 	var_types:
 	{'map': FunctionType(param_types=[FunctionType(param_types=[IntType()], ret_type=IntType()), TupleType(types=[IntType(), IntType()])], ret_type=TupleType(types=[IntType(), IntType()])), 'inc': FunctionType(param_types=[IntType()], ret_type=IntType()), 'main': FunctionType(param_types=[], ret_type=IntType()), 'x': IntType()}
 	home:
@@ -470,7 +470,7 @@
 			{fun.167, fun.166, init.159, %rsp, init.160, %rax}
 	  movq %r11, alloc.158
 
-			{%r11, fun.167, fun.166, init.159, %rsp, init.160, %rax}
+			{ %r11, fun.167, fun.166, init.159, %rsp, init.160, %rax}
 	  movq alloc.158, %r11
 
 			{fun.167, fun.166, init.159, %rsp, init.160, %rax, alloc.158}
@@ -485,40 +485,40 @@
 			{fun.167, fun.166, %rsp, init.160, %rax, alloc.158}
 	  movq alloc.158, tmp.171
 
-			{%rax, fun.167, fun.166, %rsp, alloc.158}
+			{ %rax, fun.167, fun.166, %rsp, alloc.158}
 	  movq fun.167, %rdi
 
 			{fun.167, %rsp, fun.166, tmp.171, %rax}
 	  movq tmp.171, %rsi
 
-			{%rdi, fun.166, tmp.171, %rax, %rsp}
+			{ %rdi, fun.166, tmp.171, %rax, %rsp}
 	  callq *fun.166
 
 			{fun.166, %rdi, %rsp, %rsi, %rax}
 	  movq %rax, tmp.172
 
-			{%rsp, %rax}
+			{ %rsp, %rax}
 	  movq tmp.172, %r11
 
-			{%rsp, tmp.172}
+			{ %rsp, tmp.172}
 	  movq 16(%r11), %r11
 
-			{%r11, %rsp}
+			{ %r11, %rsp}
 	  movq %r11, tmp.173
 
-			{%r11, %rsp}
+			{ %r11, %rsp}
 	  movq tmp.173, %rdi
 
-			{%rsp, tmp.173}
+			{ %rsp, tmp.173}
 	  callq _print_int
 
-			{%rsp, %rdi}
+			{ %rsp, %rdi}
 	  movq $0, %rax
 
-			{%rsp}
+			{ %rsp}
 	  jmp _mainconclusion
 
-			{%rsp, %rax}
+			{ %rsp, %rax}
 	_block.178:
 
 			{fun.167, fun.166, init.159, %rsp, init.160, %rax}
@@ -542,16 +542,16 @@
 			{fun.167, fun.166, init.159, %rsp, init.160, %rax}
 	_mainstart:
 
-			{%rsp, %rax, %r15}
+			{ %rsp, %rax, %r15}
 	  callq _read_int
 
-			{%rsp, %rax, %r15}
+			{ %rsp, %rax, %r15}
 	  movq %rax, n
 
-			{%rsp, %rax, %r15}
+			{ %rsp, %rax, %r15}
 	  leaq _map(%rip), fun.166
 
-			{%rsp, n, %r15, %rax}
+			{ %rsp, n, %r15, %rax}
 	  leaq _inc(%rip), fun.167
 
 			{n, fun.166, %rsp, %rax, %r15}
