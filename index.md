@@ -24,7 +24,7 @@ as students will do a lot of programming in one of those
 languages. Prior knowledge of an assembly language helps, but is not
 required.
 
-**Textbook:** 
+**Textbook:** *Essentials of Compilation*
 
 * The Racket version of the textbook for the course available
   [here](https://www.dropbox.com/s/ktdw8j0adcc44r0/book.pdf?dl=1).
